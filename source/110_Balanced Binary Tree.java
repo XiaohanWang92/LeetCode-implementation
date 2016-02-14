@@ -8,21 +8,18 @@
  * }
  */
 public class Solution {
-    private boolean isBalanced=true;
     public boolean isBalanced(TreeNode root) {
-        if(root==null||(root.left==null&&root.right==null)){
-            return isBalanced;
-        }
-        int leftH = height(root.left);
-        int rightH = height(root.right);
-        isBalanced=(Math.abs(leftH-rightH)>1)?false:isBalanced;//be careful
-        return isBalanced;
+        if(root == null)    return true;
+        return heightCheck(root) != -1;
     }
-    private int height(TreeNode subRoot){
-        if(subRoot==null)   return 0;
-        int lh = height(subRoot.left);
-        int lr = height(subRoot.right);
-        if(Math.abs(lh-lr)>1)   isBalanced=false;
-        return 1+(lh>lr?lh:lr);
+    private int heightCheck(TreeNode root){
+        if(root == null)    return 0;
+        int l = heightCheck(root.left);
+        if(l == -1) return -1;
+        int r = heightCheck(root.right);
+        if(r == -1) return -1;
+        if(Math.abs(l-r)>1) return -1;
+        return 1+Math.max(l,r);
     }
 }
+
