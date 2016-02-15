@@ -1,18 +1,26 @@
 public class Solution {
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<Character>();
-        for(int i = 0; i<s.length(); i++) {
-            if(s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{')
+        if(s == null || s.length() == 0)
+            return true;
+        Deque<Character> stack = new LinkedList<>();
+        for(int i = 0; i<s.length(); i++){
+            if(s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{'){
                 stack.push(s.charAt(i));
-            else if(s.charAt(i) == ')' && !stack.empty() && stack.pop() == '(')
-                continue;
-            else if(s.charAt(i) == ']' && !stack.empty() && stack.pop() == '[')
-                continue;
-            else if(s.charAt(i) == '}' && !stack.empty() && stack.pop() == '{')
-                continue;
-            else
-                return false;
+            }
+            if(s.charAt(i) == ')' || s.charAt(i) == ']' || s.charAt(i) == '}'){
+                if(stack.isEmpty()){
+                    return false;
+                }else{
+                    if(s.charAt(i) == ')' && stack.pop() != '(')
+                        return false;
+                    if(s.charAt(i) == ']' && stack.pop() != '[')
+                        return false;
+                    if(s.charAt(i) == '}' && stack.pop() != '{')
+                        return false;
+                }
+            }
         }
-        return stack.empty();//for remain parentheses, braces and brackets
+        
+        return stack.isEmpty();
     }
 }
