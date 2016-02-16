@@ -9,21 +9,23 @@
  */
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> result =new LinkedList<>();
-        Queue<TreeNode> q = new LinkedList<>();
-        if(root==null)  return result;
-        q.add(root);
-        while(!q.isEmpty()){
-            int levelSize=q.size();//**
-            List<Integer> levelList = new LinkedList<>();
-            for(int i=0;i<levelSize;i++){//careful: Line 19: error: ';' expected
-                TreeNode tmp=q.poll();
-                if(tmp.left!=null)  q.add(tmp.left);
-                if(tmp.right!=null) q.add(tmp.right);
-                levelList.add(tmp.val);
+        List<List<Integer>> res = new ArrayList<>();
+        if(root == null)    return res;
+        Queue<TreeNode> level = new LinkedList<>();
+        level.offer(root);
+        while(!level.isEmpty()){
+            int size = level.size();
+            List<Integer> l = new ArrayList<>();
+            for(int i=1; i<=size; i++){
+                TreeNode node = level.poll();
+                l.add(node.val);
+                if(node.left != null)
+                    level.offer(node.left);
+                if(node.right != null)
+                    level.offer(node.right);
             }
-            result.add(levelList);
+            res.add(l);
         }
-        return result;
+        return res;
     }
 }

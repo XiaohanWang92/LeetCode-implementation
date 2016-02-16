@@ -20,3 +20,26 @@ public class Solution {
         }
     }
 }
+/******************************************************************/
+/*iterative*/
+public class Solution {
+    public int findPeakElement(int[] nums) {
+        if(nums.length == 1)    return 0;
+        if(nums.length == 2)    return nums[0]>nums[1]?0:1;
+        
+        int start = 0, end = nums.length-1;
+        
+        while(start < end){
+            int mid1 = start + (end - start)/2;
+            int mid2 = mid1 + 1;
+            if(nums[mid1] < nums[mid2]){
+                start = mid2;
+            }else{
+                end = mid1;
+            }
+        }
+        
+        return start;
+        
+    }
+}

@@ -9,28 +9,23 @@
  */
 public class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        LinkedList<List<Integer>> result = new LinkedList<>();
-        Queue<TreeNode> q = new LinkedList<>();
-        if(root==null)  return result;
-        q.add(root);
-        while(!q.isEmpty()){
-            //there is no empty() method in this API class
-            int levelSize=q.size();
-            List<Integer> level=new LinkedList<>();
-            for(int i=0;i<levelSize;i++){
-                TreeNode tmp=q.remove();
-                if(tmp.left!=null)  q.add(tmp.left);
-                if(tmp.right!=null) q.add(tmp.right);
-                level.add(tmp.val);
+        LinkedList<List<Integer>> res = new LinkedList<>();
+        if(root == null)    return res;
+        Queue<TreeNode> level = new LinkedList<>();
+        level.offer(root);
+        while(!level.isEmpty()){
+            int size = level.size();
+            List<Integer> l = new ArrayList<>();
+            for(int i=1; i<=size; i++){
+                TreeNode node = level.poll();
+                l.add(node.val);
+                if(node.left != null)
+                    level.offer(node.left);
+                if(node.right != null)
+                    level.offer(node.right);
             }
-            result.add(level);
+            res.push(l);
         }
-        int size=result.size();
-        LinkedList<List<Integer>> result2 = new LinkedList<>();
-        //be careful here
-        for(int i=0;i<size;i++){
-            result2.add(result.pollLast());
-        }
-        return result2;
+        return res;
     }
 }

@@ -8,40 +8,26 @@
  */
 public class Solution {
     public boolean isPalindrome(ListNode head) {
-        if(head==null||head.next==null)
-            return true;
+        if(head == null || head.next == null)   return true;
+        ListNode fast = head, slow = head;
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode pre = null;
+        while(slow != null){
+            ListNode tmp = slow.next;
+            slow.next = pre;
+            pre = slow;
+            slow = tmp;
+        }
         
-        ListNode mid=findMid(head);
-        mid=mid.next;
-        ListNode half=changeDir(mid);
-        while(half!=null){
-            if(half.val!=head.val){
+        while(pre != null){
+            if(pre.val != head.val)
                 return false;
-            }
-            else{
-                head=head.next;
-                half=half.next;
-            }
+            pre = pre.next;
+            head = head.next;
         }
         return true;
-    }
-    private ListNode findMid(ListNode head){
-        ListNode speed2 = head.next;
-        ListNode speed=head;
-        while(speed2!=null&&speed2.next!=null){
-            speed=speed.next;
-            speed2=speed2.next.next;
-        }
-        return speed;
-    }
-    private ListNode changeDir(ListNode head){
-        ListNode pre=null;
-        while(head!=null){
-          ListNode temp=head.next;
-          head.next=pre;
-          pre=head;
-          head=temp;
-        }
-        return pre;
     }
 }
