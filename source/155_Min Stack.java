@@ -1,34 +1,35 @@
 class MinStack {
-    private Stack<Integer> s;
-    private Stack<Integer> minS;//consecutive sequence in increasing order
-    MinStack(){
-        s=new Stack<Integer>();
-        minS=new Stack<Integer>();
+    
+    private Deque<Integer> stack1;
+    private Deque<Integer> stack2;
+    
+    public MinStack(){
+        stack1 = new LinkedList<Integer>();
+        stack2 = new LinkedList<Integer>();
     }
+    
     public void push(int x) {
-        s.push(x);
-        if(minS.size()!=0){
-            if(x<=minS.peek())
-                minS.push(x);//*equal
-        }
-        else{
-            minS.push(x);
+        stack1.push(x);
+        if(stack2.isEmpty() || x<=stack2.peek()){
+            stack2.push(x);
         }
     }
 
     public void pop() {
-        int check=s.pop();
-        if(minS.size()!=0){//not while, only check once!
-            if(minS.peek()==check)
-                minS.pop();
+        if(stack1.isEmpty()){
+            return;
+        }else{
+            int ret = stack1.pop();
+            if(ret == stack2.peek())
+                stack2.pop();
         }
     }
 
     public int top() {
-        return s.peek();
+        return stack1.peek();
     }
 
     public int getMin() {
-        return minS.peek();
+        return stack2.peek();
     }
 }

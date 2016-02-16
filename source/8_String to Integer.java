@@ -1,25 +1,31 @@
 public class Solution {
     public int myAtoi(String str) {
-	        if(str==null)   return 0;
-	        String strTrim = str.trim();//cut whitespace
-	        if(strTrim.equals(""))  return 0;
-	        boolean isPos = true;
-	        if(strTrim.charAt(0) == '-'){
-	            isPos =false;
-	        }
-	        int sum=0;
-	        int id=0;
-	        if(strTrim.charAt(0) == '+' || strTrim.charAt(0) == '-'){
-	            id++;
-	        }
-	        while(id<strTrim.length()&&Character.getNumericValue(strTrim.charAt(id))>=0&&Character.getNumericValue(strTrim.charAt(id))<=9){
-	            int digit = Character.getNumericValue(strTrim.charAt(id));
-	            if(Integer.MAX_VALUE/10 < sum || Integer.MAX_VALUE/10 == sum && Integer.MAX_VALUE %10 < digit)
-	                return isPos? Integer.MAX_VALUE : Integer.MIN_VALUE;
-	            sum = 10*sum+digit;
-	            id++;
-	        }
-	        if(!isPos)  sum *= -1;
-	        return sum;
+        //empty string
+        if(str == null || str.length()==0)
+            return 0;
+        //whitespaces
+        String s = str.trim();
+        int idx = 0, sign = 1;
+        //sign handle
+        if(s.charAt(idx) == '+' || s.charAt(idx) == '-'){
+            sign = s.charAt(idx) == '+'? 1 : -1;
+            idx++;
+        }
+        //convert and check overflow
+        int res = 0;
+        while(idx < s.length()){
+            int digit = s.charAt(idx) - '0';
+            //valid character from '0' to '9'?
+            //Character.getNumericValue(char ch) can also work
+            if(digit < 0 || digit > 9)
+                break;
+            if(Integer.MAX_VALUE/10 < res ||
+              (Integer.MAX_VALUE/10 == res && Integer.MAX_VALUE%10 < digit)){
+                  return sign == 1? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+            res = res * 10 + digit;
+            idx++;
+        }
+        return res * sign;
     }
 }
