@@ -8,23 +8,19 @@
  * }
  */
 public class Solution {
-    private boolean isFound;
-    private int rank;
-    private int res;
     public int kthSmallest(TreeNode root, int k) {
-        rank = k;
-        inorderWalk(root);
-        return res;
-    }
-    private void inorderWalk(TreeNode root){
-        if(isFound) return;
-        if(root.left!=null) inorderWalk(root.left);
-        rank--;
-        if(rank==0){
-            res = root.val;
-            isFound = true;
-            return;
+        int count = countNodes(root.left) + 1;
+        if (k < count) {
+            return kthSmallest(root.left, k);
+        } else if (k > count) {
+            return kthSmallest(root.right, k-count); // 1 is counted as current node
+        } else{
+            return root.val;
         }
-        if(root.right!=null)    inorderWalk(root.right);
+    }
+
+    public int countNodes(TreeNode root) {
+        if (root == null) return 0;
+        return 1 + countNodes(root.left) + countNodes(root.right);
     }
 }
