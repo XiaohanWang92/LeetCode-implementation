@@ -9,23 +9,24 @@
  */
 public class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if(preorder==null || inorder==null || preorder.length!=inorder.length)  return null;
-        TreeNode root = findRoot(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1);
+        if(preorder == null || inorder == null || inorder.length != preorder.length)
+            return null;
+        TreeNode root = buildTree(preorder, inorder, 0, preorder.length-1, 0, inorder.length-1);
         return root;
     }
-    private TreeNode findRoot(int[] preorder, int pl, int pr, int[] inorder, int il, int ir){
-        if(pl>pr || il>ir)  return null;
-        TreeNode subroot = new TreeNode(preorder[pl]);
-        int rootIndexInorder = il;
-        for(int i = il; i<=ir; i++){
-            if(inorder[i]==preorder[pl]){
-                rootIndexInorder = i;
+    private TreeNode buildTree(int[] preorder, int[] inorder, int ps, int pe, int is, int ie){
+        if(ps > pe || is > ie)
+            return null;
+        TreeNode root = new TreeNode(preorder[ps]);
+        int i = 0;
+        for(i = is; is <= ie; is++){
+            if(inorder[i] == preorder[ps])
                 break;
-            }
         }
-        int leftSubtreeRange = rootIndexInorder - il;
-        subroot.left = findRoot(preorder, pl+1, pl+leftSubtreeRange, inorder, il, rootIndexInorder-1);
-        subroot.right = findRoot(preorder, pl+leftSubtreeRange+1, pr, inorder, rootIndexInorder+1, ir);
-        return subroot;
+        int leftTreeSize = i - is;
+        root.left = buildTree(preorder, inorder, ps+1, ps+leftTreeSize, is, i-1);
+        root.right = buildTree(preorder, inorder, ps+leftTreeSize+1, pe, i+1, ie);
+        return root;
     }
 }
+

@@ -7,7 +7,7 @@ public class Solution {
         return s;
     }
     private String say(String s){
-        StringBuffer stb = new StringBuffer();
+        StringBuilder stb = new StringBuilder();
         int id=0;
         while(id<s.length()){
             int count=0;

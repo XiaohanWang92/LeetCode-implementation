@@ -10,31 +10,29 @@
 public class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
-        if(root==null)  return res;
-        Deque<TreeNode> currentLayer = new LinkedList<>();
-        Deque<TreeNode> nextLayer = new LinkedList<>();
-        List<Integer> layerList = new ArrayList<>();
-        currentLayer.push(root);
-        boolean flag = true;//from left to right?
-        while(!currentLayer.isEmpty()){
-            TreeNode node = currentLayer.pop();
-            if(flag){
-                if(node.left!=null) nextLayer.push(node.left);
-                if(node.right!=null)    nextLayer.push(node.right);
-            }else{
-                if(node.right!=null)    nextLayer.push(node.right);
-                if(node.left!=null) nextLayer.push(node.left);
+        if(root == null)    return res;
+        Queue<TreeNode> level = new LinkedList<>();
+        boolean flag = true;
+        level.offer(root);
+        while(!level.isEmpty()){
+            int size = level.size();
+            LinkedList<Integer> l = new LinkedList<>();
+            for(int i=1; i<=size; i++){
+                TreeNode node = level.poll();
+                if(flag){
+                    l.add(node.val);
+                }else{
+                    l.add(0, node.val);
+                }
+                if(node.left != null)
+                    level.offer(node.left);
+                if(node.right != null)
+                    level.offer(node.right);
             }
-            layerList.add(node.val);
-            if(currentLayer.isEmpty()){
-                res.add(new ArrayList(layerList));
-                layerList.clear();
-                flag = !flag;
-                Deque tmp = currentLayer;
-                currentLayer = nextLayer;
-                nextLayer = tmp;
-            }
+            res.add(l);
+            flag = !flag;
         }
+        
         return res;
     }
 }
