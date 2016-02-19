@@ -6,10 +6,12 @@ public class Solution {
         Arrays.fill(isP,true);
         isP[0]=false;
         isP[1]=false;
+        //termination condition is until i^2
         for(int i=2;i*i<n;i++){
             if(!isP[i]){
                 continue;
             }
+            //start mark off from i^2, i^2+i, i^2+2i
             for(int j=i*i;j<n;j=j+i){
                 isP[j]=false;
             }
