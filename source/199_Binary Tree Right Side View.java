@@ -30,3 +30,32 @@ public class Solution {
         return res;
     }
 }
+/use ArrayList, even doesn't speed up/
+public class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if(root == null)    return res;
+        List<TreeNode> layer = new ArrayList<>();
+        layer.add(root);
+        while(!layer.isEmpty()){
+            List<TreeNode> nextLayer = new ArrayList<>();
+            int size = layer.size();
+            for(int i = 0; i <= size-2; i++){
+                TreeNode node = layer.get(i);
+                if(node.left != null)
+                    nextLayer.add(node.left);
+                if(node.right != null)
+                    nextLayer.add(node.right);
+            }
+            TreeNode lastOne = layer.get(size-1);
+            res.add(lastOne.val);
+            if(lastOne.left != null)
+                nextLayer.add(lastOne.left);
+            if(lastOne.right != null)
+                nextLayer.add(lastOne.right);
+            layer.clear();
+            layer.addAll(nextLayer);
+        }
+        return res;
+    }
+}
