@@ -1,25 +1,23 @@
 public class Solution {
     public int reverse(int x) {
-        int temp=x;
-        int rev=0;
-        int remain=0;
-        int check=0;
-        if(x==0)
+        if(x == 0)
             return x;
-        if(x<0)
-            temp *= -1;
-        while(temp>0){
-            remain=temp%10;
-            rev = 10*rev+remain;
-            while(check!=(rev-remain)/10){
-                return 0;
-            }
-	be careful about overflow!
-            check=rev;
-            temp /= 10;
+        boolean sign = true;
+        if(x < 0){
+            sign = false;
+            x = Math.abs(x);
         }
-        if(x<0)
-         return rev*(-1);
-        return rev;
+        int check = 0;
+        int digit = 0;
+        int res = 0;
+        while(x != 0){
+            digit = x % 10;
+            res = 10 * res + digit;
+            if(check != res/10)
+                return 0;
+            check = res;
+            x /= 10;
+        }
+        return sign == true ? res : -res;
     }
 }
