@@ -8,7 +8,7 @@ public class Solution {
        while(i<j){
            volume = Math.max((j-i)*Math.min(height[i], height[j]), volume);
            if(height[i]<height[j]){
-               while(i+1<width && height[i+1]<=height[i]){
+               while(i+1<=width && height[i+1]<=height[i]){
                    i++;
                }
                i++;
