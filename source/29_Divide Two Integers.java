@@ -1,25 +1,31 @@
 public class Solution {
     public int divide(int dividend, int divisor) {
-        int sign=1;
-        if((dividend<0&&divisor>0)||(dividend>0&&divisor<0))    sign=-1;
-        long dvdl=Math.abs((long)dividend);//integer abs(-2^31)=2^31 overflow to -2^31
-        long dvsl=Math.abs((long)divisor);//integer abs(-2^31)=2^31 overflow to -2^31
-        if(dvsl==0)  return Integer.MAX_VALUE;//2^31-1
-        if(dvdl<dvsl||dvdl==0) return 0;
-        long res=divideLong(dvdl,dvsl);
-        if(res>Integer.MAX_VALUE){//-1 wants to devide MIN_VALUE......
-            return sign==1?Integer.MAX_VALUE:Integer.MIN_VALUE;
+        if(divisor == 0)    return Integer.MAX_VALUE;
+        int sign = 1;
+        if((dividend < 0 && divisor > 0) || (dividend > 0 && divisor < 0))
+            sign = -1;
+        //directly abs(int) may cause overflow: -2^31 -> +2^31 -> -2^31
+        long divd = Math.abs((long)dividend);
+        long divs = Math.abs((long)divisor);
+        if(divd < divs || divd == 0)  return 0;
+        long res = divide(divd, divs);
+        //Integer.MIN_VALUE / -1 = 2^31 -> overflow
+        //Integer.MIN_VALUE / 1 = -2^31 -> be considered overflow as well, but will return right value because sign = -1
+        if(res > Integer.MAX_VALUE){
+            return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
         }
-        return (int)(sign*res);
+        return (int)(sign * res);
     }
-    private long divideLong(long dvdl,long dvsl){
-        if(dvdl<dvsl)   return 0;
-        long multiples=1;
-        long doubling = dvsl;
-        while((doubling+doubling)<=dvdl){//use if hear will use out of stack!!!!
-            doubling +=doubling;
-            multiples +=multiples;
+    private long divide(long divd, long divs){
+        if(divs > divd)
+            return 0;
+        long mul = 1;
+        long tmp = divs;
+        while((tmp + tmp) <= divd){
+            mul += mul;
+            tmp += tmp;
         }
-        return multiples+divideLong(dvdl-doubling, dvsl);
+        //18/3 first round tmp = 12, mul = 4, return 4 + divide(6, 3)
+        return mul + divide(divd - tmp, divs);
     }
 }
