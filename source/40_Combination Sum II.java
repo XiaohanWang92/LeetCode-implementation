@@ -1,24 +1,23 @@
 public class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
-        List<Integer>   track = new ArrayList<>();
-        if(candidates==null || candidates.length == 0)
-            return res;
+        if(candidates == null || candidates.length == 0)    return res;
+        List<Integer> combine = new ArrayList<>();
         Arrays.sort(candidates);
-        dfs_com(candidates, 0, target, track, res);
+        findSum(candidates, target, res, combine, 0);
         return res;
     }
-void dfs_com(int[] cand, int cur, int target, List<Integer> path, List<List<Integer>> res) {
-    if (target == 0) {
-        res.add(new ArrayList(path));
-        return ;
+    private void findSum(int[] can, int t, List<List<Integer>> res, List<Integer> combine, int pos){
+        if(t < 0)   return;
+        if(t == 0){
+            res.add(new ArrayList<Integer>(combine));
+        }
+        for(int i = pos; i < can.length; i++){
+            if(i != pos && can[i] == can[i-1])
+                continue;
+            combine.add(can[i]);
+            findSum(can, t - can[i], res, combine, i + 1);
+            combine.remove(combine.size()-1);
+        }
     }
-    if (target < 0) return;
-    for (int i = cur; i < cand.length; i++){
-        if (i > cur && cand[i] == cand[i-1]) continue;
-        path.add(cand[i]);
-        dfs_com(cand, i+1, target - cand[i], path, res);
-        path.remove(path.size()-1);
-    }
-}
 }

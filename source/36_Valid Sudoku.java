@@ -1,29 +1,32 @@
 public class Solution {
     public boolean isValidSudoku(char[][] board) {
-        for (int i=0; i<9; i++) {
-         if (!isValid(board,i,i,0,8))
-              return false;
-         if (!isValid(board,0,8,i,i))
+        if(board == null || board.length != 9 || board[0].length != 9)
+            return false;
+        //row and column
+        for(int i = 0; i < 9; i++){
+            if(!isValidSudoku(board, i, i, 0, 8))
+                return false;
+            if(!isValidSudoku(board, 0, 8, i, i))
                 return false;
         }
-         for (int i=0;i<3;i++){
-           for(int j=0;j<3;j++){
-               if (!isValid(board,i*3,i*3+2,j*3,j*3+2))
-                   return false;
-           }
+        //3x3 square
+        for(int ro = 0; ro <= 2; ro++){
+            for(int co = 0; co <= 2; co++)
+                if(!isValidSudoku(board, ro*3, ro*3+2, co*3, co*3+2))
+                    return false;
         }
         return true;
     }
-    private boolean isValid(char[][] board, int xs, int xe,int ys,int ye){
-        HashSet<Character> hs = new HashSet<Character>();
-        for (int i= xs; i<=xe; i++){
-             for (int j=ys;j<=ye; j++){
-                 if (board[i][j]!='.') {
-                        if(!hs.add(board[i][j]))
-                             return false;
-                 }
+    //row start->rs, row end->re, column start->cs, column end->ce
+    private boolean isValidSudoku(char[][] board, int rs, int re, int cs, int ce){
+        Set<Character> set = new HashSet<Character>();
+        for(int i = rs; i <= re; i++){
+            for(int j = cs; j <= ce; j++){
+                char c = board[i][j];
+                if(c != '.' && !set.add(c))
+                    return false;
             }
         }
-         return true;
+        return true;
     }
 }
