@@ -9,25 +9,29 @@
  */
 public class Solution {
     public List<Interval> merge(List<Interval> intervals) {
-        List<Interval> res = new ArrayList<Interval>();
-        if(intervals == null || intervals.size()==0) return res;
-        Collections.sort(intervals,new Comparator<Interval>(){
-            @Override
-            public int compare(Interval i1,Interval i2){
-                return i1.start-i2.start;
+        List<Interval> res = new ArrayList<>();
+        if(intervals == null || intervals.isEmpty())    return res;
+        Collections.sort(intervals, new Comparator<Interval>(){
+            public int compare(Interval l1, Interval l2){
+                //since all start time (int) is positive number
+                //using directly x - y will not cause the overflow
+                return l1.start - l2.start;
             }
         });
-        int start = intervals.get(0).start;
-        int end = intervals.get(0).end;
-        for(Interval i : intervals){
-            if(i.start>end){
-                res.add(new Interval(start,end));
-                start = i.start;
-                end = i.end;
+        int s = intervals.get(0).start;
+        int e = intervals.get(0).end;
+        for(int i = 0; i < intervals.size(); i++){
+            Interval curr = intervals.get(i);
+            if(curr.start <= e){
+                e = Math.max(e, curr.end);
+            }else{
+                res.add(new Interval(s, e));
+                s = curr.start;
+                e = curr.end;
             }
-            else end = Math.max(end,i.end);
         }
-        res.add(new Interval(start,end));
+        //add the last one
+        res.add(new Interval(s, e));
         return res;
     }
 }

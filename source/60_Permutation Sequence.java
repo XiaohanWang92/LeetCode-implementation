@@ -1,33 +1,25 @@
 public class Solution {
-    	public String getPermutation(int n, int k) {
-    	int pos = 0;
-    	List<Integer> numbers = new ArrayList<>();
-    	int[] factorial = new int[n+1];
-    	StringBuilder sb = new StringBuilder();
-	
-    	// create an array of factorial lookup
-    	int sum = 1;
-    	factorial[0] = 1;//0!=1
-    	for(int i=1; i<=n; i++){
-    	    sum *= i;
-    	    factorial[i] = sum;
-   	 }
-    	// factorial[] = {1, 1, 2, 6, 24, ... n!}
-	
-    	// create a list of numbers to get indices
-    	for(int i=1; i<=n; i++){
-    	    numbers.add(i);
-    	}
-    	// numbers = {1, 2, 3, 4}
-	
-    	k--;
-	
-    	for(int i = 1; i <= n; i++){
- 		int index = k/factorial[n-i];//factorial[n-i]=(n-i)!
-       	 	sb.append(numbers.get(index));
-      		numbers.remove(index);
-        	k -= index*factorial[n-i];
-    	}
-    	return sb.toString();
-	}
+    public String getPermutation(int n, int k) {
+        if(n <= 0 || k <= 0)    return "";
+        List<Integer> list = new ArrayList<Integer>();
+        int[] fac = new int[n+1];
+        //0! = 1
+        fac[0] = 1;
+        //factorial[] = {1, 1, 2, 6, 24, ... n!}
+        //add numbers in a list
+        for(int i = 1; i <= n; i++){
+            fac[i] = fac[i-1] * i;
+            list.add(i);
+        }
+        StringBuilder sb = new StringBuilder();
+        k--;
+        //get index, update and generate permutation
+        for(int i = n; i >= 1; i--){
+            int idx = k/fac[i-1];
+            sb.append(list.get(idx));
+            k = k - fac[i-1]*idx;
+            list.remove(idx);
+        }
+        return sb.toString();
+    }
 }
