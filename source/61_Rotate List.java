@@ -8,24 +8,26 @@
  */
 public class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        if(head==null||head.next==null||k==0) return head;
-        ListNode tail = head;
-        int len=1;
-        while(tail.next!=null){
-            tail = tail.next;
+        if(head == null || head.next == null || k == 0)
+            return head;
+        int len = 1;
+        ListNode tmp = head;
+        while(tmp.next != null){
+            tmp = tmp.next;
             len++;
         }
-        int r = k%len;
-        if(r == 0)  return head;
-        int move = len - r;
-        ListNode newTail = head;
-        while(move>1){
-            newTail = newTail.next;
-            move--;
+        //tmp now is the tail
+        k = k % len;
+        if(k == 0)  return head;
+        int r = len - k;
+        while(r > 0){
+            ListNode nextOne = head.next;
+            head.next = null;
+            tmp.next = head;
+            tmp = tmp.next;
+            head = nextOne;
+            r--;
         }
-        tail.next = head;
-        head = newTail.next;
-        newTail.next = null;
         return head;
     }
 }

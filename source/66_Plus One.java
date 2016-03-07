@@ -25,3 +25,32 @@ public class Solution {
         }
     }
 }
+//another implementation
+public class Solution {
+    public int[] plusOne(int[] digits) {
+        if(digits == null || digits.length == 0){
+            int[] res = new int[1];
+            res[0] = 1;
+            return res;
+        }
+        for(int i = digits.length-1; i >= 0; i--){
+            if(digits[i] != 9)
+                break;
+            if(i == 0){
+                int[] res = new int[digits.length+1];
+                res[0] = 1;
+                return res;
+            }
+        }
+        int[] res = new int[digits.length];
+        res[res.length-1] = digits[digits.length-1] + 1;
+        int carry = res[res.length-1]/10;
+        res[res.length-1] %= 10;
+        for(int i = digits.length-2; i >= 0; i--){
+            res[i] = carry + digits[i];
+            carry = res[i]/10;
+            res[i] %= 10;
+        }
+        return res;
+    }
+}
