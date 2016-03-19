@@ -1,31 +1,33 @@
 public class Solution {
-    private boolean[][] visited;
     public boolean exist(char[][] board, String word) {
-        if(board==null||board.length==0||board[0].length==0||word==null||word.length()==0)
+        if(word == null || word.equals(""))
             return false;
-        char[] wordChar = word.toCharArray();
-        visited = new boolean[board.length][board[0].length];
-        for(int i=0; i<board.length; i++){
-            for(int j=0; j<board[0].length; j++){
-                if(findWord(wordChar, board, i, j, 0))
+        if(board == null || board.length == 0 || board[0].length == 0)
+            return false;
+        int m = board.length, n = board[0].length;
+        boolean[][] used = new boolean[m][n];
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(find(board, used, i, j, 0, word, m, n))
                     return true;
             }
         }
         return false;
     }
-    private boolean findWord(char[] word, char[][] board, int row, int col, int wordNum){
-        if(word.length==wordNum)    return true;
-        if(row<0||row>board.length-1||col<0||col>board[row].length-1) return false;
-        if(word[wordNum]!=board[row][col]||visited[row][col])  return false;
-        
-        visited[row][col] = true;
-        if(findWord(word, board, row-1, col, wordNum+1)||
-           findWord(word, board, row+1, col, wordNum+1)||
-           findWord(word, board, row, col-1, wordNum+1)||
-           findWord(word, board, row, col+1, wordNum+1)){
-               return true;
-           }
-        visited[row][col] = false;
-        return false;
+    private boolean find(char[][] board, boolean[][] used, int i, int j, int pos, String word, int m, int n){
+        if(pos == word.length())
+            return true;
+        if(i < 0 || i >= m || j < 0 || j >= n)
+            return false;
+        if(word.charAt(pos) != board[i][j] || used[i][j])
+            return false;
+        else{
+            used[i][j] = true;
+            if(find(board, used, i+1, j, pos+1, word, m, n) || find(board, used, i-1, j, pos+1, word, m, n) ||
+               find(board, used, i, j+1, pos+1, word, m, n) || find(board, used, i, j-1, pos+1, word, m, n))
+                return true;
+            used[i][j] = false;
+            return false;
+        }
     }
 }
