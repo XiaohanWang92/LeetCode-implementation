@@ -11,8 +11,8 @@ public class Solution {
         if(n == 2)  return x*x;
         //if n = -2147483648, convert it to positive will overflow if data type is int
         //so we use a overload method to deal with it
-        if(n < 0)   return myPow(1/x, (long)(-n));//deal with n = -2147483648
-        long halfPow = n/2;
+        if(n < 0) return myPow(1 / x, (long)(-n));//deal with n = -2147483648
+        long halfPow = n / 2;
         return myPow(myPow(x, halfPow), (long)2) * myPow(x, (long)(n % 2 == 0 ? 0 : 1));
     }
     
@@ -21,10 +21,10 @@ public class Solution {
     public double myPow(double x, int n) {
         long m = n < 0 ? (long)n * (-1) : n;
         double res = 1.0;
-        while(m != 0){
-            if(m % 2 == 1)  res *= x;
+        while(m != 0) {
+            if(m % 2 == 1) res *= x;
             x *= x;
             m /= 2;
         }
-        return n < 0 ? 1/res : res;
+        return n < 0 ? 1 / res : res;
     }
