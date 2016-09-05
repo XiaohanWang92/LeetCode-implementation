@@ -1,3 +1,4 @@
 # LeetCode-implementation
-this is my LeetCode source code.
+This is my LeetCode solution.
+I find that when your purpose here is not finding a job, playing in LeetCode is much more......relaxing.
 Always having fun in coding!
