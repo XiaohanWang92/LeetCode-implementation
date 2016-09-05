@@ -8,21 +8,28 @@
  */
 public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        if(head==null || head.next==null)   return head;
-        ListNode dummy = new ListNode(0);
-        ListNode curr = dummy;
-        while(head!=null){
-          if(head.next!=null && head.val == head.next.val){
-              while(head.next!=null && head.val == head.next.val)
+        if(head == null || head.next == null)
+            return head;
+
+        // Makes sure that dummy's value is different from any list element
+        ListNode dummyHead = new ListNode(-1);
+        ListNode currentNodePosition = dummyHead;
+        while(head != null) {
+            if(head.next != null && head.val == head.next.val) {
+                while(head.next != null && head.val == head.next.val)
+                    head = head.next;
                 head = head.next;
-              head = head.next;
-          }else{
-              curr.next = head;
-              head = head.next;
-              curr = curr.next;
-              curr.next = null;
-          }
+            } else {
+                currentNodePosition.next = head;
+
+                // Must update at once to avoid null setting side effect
+                head = head.next;
+                currentNodePosition = currentNodePosition.next;
+
+                // Avoid trailing duplication such as 1->2->2
+                currentNodePosition.next = null;
+            }
         }
-        return dummy.next;
+        return dummyHead.next;
     }
 }
