@@ -1,28 +1,32 @@
 public class Solution {
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
-        Set<String> reached = new HashSet<>();
-        reached.add(beginWord);
+        if(beginWord == null || endWord == null || beginWord.equals(endWord)) {
+            return 0;
+        }
+        Set<String> currentReachedWords = new HashSet<>();
+        currentReachedWords.add(beginWord);
         wordList.add(endWord);
-        int dist=1;
-        while(!reached.contains(endWord)){
-            Set<String> addword = new HashSet<>();
-            for(String s : reached){
-                for(int i=0;i<s.length();i++){
-                    char[] schar = s.toCharArray();
-                    for(char c='a';c<='z';c++){
-                        schar[i]=c;
-                        String genWord = new String(schar);
-                        if(wordList.contains(genWord)){
-                            addword.add(genWord);
-                            wordList.remove(genWord);
+        int distance = 1;
+        while(!currentReachedWords.contains(endWord)) {
+            Set<String> temp = new HashSet<>();
+            for(String s : currentReachedWords) {
+                for(int i = 0; i < s.length(); i++) {
+                    char[] c = s.toCharArray();
+                    for(char replaceChar = 'a'; replaceChar <= 'z'; replaceChar++) {
+                        if(c[i] == replaceChar) continue;
+                        c[i] = replaceChar;
+                        String transformation = new String(c);
+                        if(wordList.contains(transformation)) {
+                            wordList.remove(transformation);
+                            temp.add(transformation);
                         }
                     }
                 }
             }
-            dist++;
-            if(addword.size()==0)   return 0;
-            reached = addword;
+            if(temp.size() == 0)    return 0;
+            currentReachedWords = temp;
+            distance++;
         }
-        return dist;
+        return distance;
     }
 }
