@@ -9,19 +9,21 @@
  */
 public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
-        if(root == null)    return res;
-        inorderWalk(root, res);
-        return res;
+        List<Integer> results = new ArrayList<>();
+        if(root == null)    return results;
+        inorderWalk(root, results);
+        return results;
     }
-    private void inorderWalk(TreeNode root, List<Integer> res){
+
+    private void inorderWalk(TreeNode root, List<Integer> results){
         if(root==null)  return;
-        inorderWalk(root.left, res);
-        res.add(root.val);
-        inorderWalk(root.right, res);
+        inorderWalk(root.left, results);
+        results.add(root.val);
+        inorderWalk(root.right, results);
     }
 }
-/*use stack*/
+
+//use stack
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -33,18 +35,19 @@ public class Solution {
  */
 public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
-        Stack<TreeNode>  stack = new Stack<>();
-        TreeNode pos = root;
-        while(pos!=null||!stack.isEmpty()){
-            while(pos!=null){
-                stack.push(pos);
-                pos = pos.left;
+        if(root == null)    return new ArrayList<>();
+        Deque<TreeNode> stack = new LinkedList<>();
+        List<Integer> results = new ArrayList<>();
+        TreeNode cursor = root;
+        while(cursor != null || stack.size() != 0) {
+            while(cursor != null) {
+                stack.push(cursor);
+                cursor = cursor.left;
             }
-            pos = stack.pop();
-            res.add(pos.val);
-            pos = pos.right;
+            TreeNode t = stack.pop();
+            results.add(t.val);
+            cursor = t.right;
         }
-        return res;
+        return results;
     }
 }

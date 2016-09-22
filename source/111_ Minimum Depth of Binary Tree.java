@@ -9,12 +9,12 @@
  */
 public class Solution {
     public int minDepth(TreeNode root) {
-        if(root==null)  return 0;
-        int leftSubTree = minDepth(root.left);
-        int rightSubTree = minDepth(root.right);
-        if(leftSubTree==0||rightSubTree==0){
-            return leftSubTree==0?rightSubTree+1:leftSubTree+1;//include root node
+        if(root == null)  return 0;
+        int leftSubTreeDepth = minDepth(root.left);
+        int rightSubTreeDepth = minDepth(root.right);
+        if(leftSubTreeDepth == 0 || rightSubTreeDepth == 0) {
+            return leftSubTreeDepth == 0 ? rightSubTreeDepth + 1 : leftSubTreeDepth + 1;
         }
-        return Math.min(leftSubTree,rightSubTree)+1;
+        return Math.min(leftSubTreeDepth, rightSubTreeDepth) + 1;
     }
 }
