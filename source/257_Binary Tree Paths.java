@@ -10,20 +10,20 @@
 public class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> pathList = new ArrayList<>();
-        if(root!=null){
-            DFS(root,"",pathList);
+        if(root != null) {
+            DFS(root, "", pathList);
         }
         return pathList;
     }
-    private void DFS(TreeNode subRoot,String path, List<String> build){
-        if(subRoot.left==null&&subRoot.right==null){
-            build.add(path+subRoot.val);
+    private void DFS(TreeNode subRoot,String path, List<String> pathList) {
+        if(subRoot.left == null && subRoot.right == null) {
+            pathList.add(path + subRoot.val);
         }
-        if(subRoot.left!=null){
-            DFS(subRoot.left,path+subRoot.val+"->",build);
+        if(subRoot.left != null) {
+            DFS(subRoot.left, path + subRoot.val + "->", pathList);
         }
-        if(subRoot.right!=null){
-            DFS(subRoot.right,path+subRoot.val+"->",build);
+        if(subRoot.right != null) {
+            DFS(subRoot.right, path + subRoot.val + "->", pathList);
         }
     }
 }

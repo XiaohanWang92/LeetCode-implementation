@@ -9,7 +9,9 @@
  */
 
 public class BSTIterator {
+
     Deque<TreeNode> stack;
+
     public BSTIterator(TreeNode root) {
         stack = new LinkedList<>();
         savePath(root);
@@ -27,8 +29,8 @@ public class BSTIterator {
         return t.val;
     }
     
-    private void savePath(TreeNode root){
-        while(root!=null){
+    private void savePath(TreeNode root) {
+        while(root!=null) {
             stack.push(root);
             root = root.left;
         }

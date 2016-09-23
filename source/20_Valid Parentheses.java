@@ -3,14 +3,14 @@ public class Solution {
         if(s == null || s.length() == 0)
             return true;
         Deque<Character> stack = new LinkedList<>();
-        for(int i = 0; i<s.length(); i++){
-            if(s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{'){
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{') {
                 stack.push(s.charAt(i));
             }
-            if(s.charAt(i) == ')' || s.charAt(i) == ']' || s.charAt(i) == '}'){
-                if(stack.isEmpty()){
+            if(s.charAt(i) == ')' || s.charAt(i) == ']' || s.charAt(i) == '}') {
+                if(stack.isEmpty()) {
                     return false;
-                }else{
+                } else {
                     if(s.charAt(i) == ')' && stack.pop() != '(')
                         return false;
                     if(s.charAt(i) == ']' && stack.pop() != '[')
@@ -20,7 +20,6 @@ public class Solution {
                 }
             }
         }
-        
         return stack.isEmpty();
     }
 }
