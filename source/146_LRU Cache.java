@@ -1,79 +1,87 @@
 public class LRUCache {
-    class DLLNode {
+
+    class DoubleLinkedListNode {
         int value;
         int key;
-        DLLNode pre;
-        DLLNode next;
-        public DLLNode(int v, int k){
+        DoubleLinkedListNode previous;
+        DoubleLinkedListNode next;
+
+        public DoubleLinkedListNode(int v, int k){
             value = v;
-            //key is for evicting, use key to find element in HashMap
+
+            //  key is to find element in HashMap with evicting
             key = k;
         }
-        public DLLNode(){
-            //do nothing, for dummy head and end
-            //don't forget to instantiate them!
+
+        public DoubleLinkedListNode(){
+
+            // Empty method
+            // Do nothing, for dummy head and end
+            // Don't forget to instantiate them!
         }
     }
     
-    private DLLNode head;
-    private DLLNode end;
+    private DoubleLinkedListNode head;
+    private DoubleLinkedListNode end;
     
-    private void addNode(DLLNode node){
-        node.pre = head;
-        head.next.pre = node;
+    private void addNode(DoubleLinkedListNode node){
+        node.previous = head;
+        head.next.previous = node;
         node.next = head.next;
         head.next = node;
     }
     
-    private void remove(DLLNode node){
-        //reference gone, automatically waiting for gabage collector 
-        DLLNode preNode = node.pre;
-        DLLNode nextNode = node.next;
-        preNode.next = nextNode;
-        nextNode.pre = preNode;
+    private void remove(DoubleLinkedListNode node){
+
+        // Reference gone, automatically waiting for gabage collector 
+        DoubleLinkedListNode previousNode = node.previous;
+        DoubleLinkedListNode nextNode = node.next;
+        previousNode.next = nextNode;
+        nextNode.previous = previousNode;
     }
     
-    private void newlyUsed(DLLNode node){
+    private void newlyUsed(DoubleLinkedListNode node){
         remove(node);
         addNode(node);
     }
     
-    private DLLNode evictLeastUsed(){
-        DLLNode leastUsed = end.pre;
+    private DoubleLinkedListNode evictLeastUsed(){
+        DoubleLinkedListNode leastUsed = end.previous;
         remove(leastUsed);
         return leastUsed;
     }
     
     private int capacity;
     private int current;
-    private Map<Integer, DLLNode> map;
+    private Map<Integer, DoubleLinkedListNode> map;
     
     public LRUCache(int capacity) {
         current = 0;
         this.capacity = capacity;
-        head = new DLLNode();
-        end = new DLLNode();
+        head = new DoubleLinkedListNode();
+        end = new DoubleLinkedListNode();
         head.next = end;
-        end.pre = head;
-        map = new HashMap<Integer, DLLNode>();
+        end.previous = head;
+        map = new HashMap<Integer, DoubleLinkedListNode>();
     }
     
     public int get(int key) {
-        DLLNode res = map.get(key);
-        if(res == null)
+        DoubleLinkedListNode result = map.get(key);
+        if(result == null)
             return -1;
-        //update newly used cache
-        newlyUsed(res);
-        return res.value;
+
+        // Update newly used cache
+        newlyUsed(result);
+        return result.value;
     }
     
     public void set(int key, int value) {
-        DLLNode res = map.get(key);
-        if(res!=null){
-            res.value = value;
-            newlyUsed(res);
-        }else{
-            DLLNode newOne = new DLLNode(value, key);
+        DoubleLinkedListNode result = map.get(key);
+        if(result != null) {
+            result.value = value;
+            newlyUsed(result);
+        } else {
+            DoubleLinkedListNode newOne = new DoubleLinkedListNode(value, key);
             map.put(key, newOne);
             addNode(newOne);
             current++;
