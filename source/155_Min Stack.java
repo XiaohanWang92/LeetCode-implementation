@@ -10,17 +10,17 @@ class MinStack {
     
     public void push(int x) {
         stack1.push(x);
-        if(stack2.isEmpty() || x<=stack2.peek()){
+        if(stack2.isEmpty() || x <= stack2.peek()) {
             stack2.push(x);
         }
     }
 
     public void pop() {
-        if(stack1.isEmpty()){
+        if(stack1.isEmpty()) {
             return;
-        }else{
-            int ret = stack1.pop();
-            if(ret == stack2.peek())
+        } else {
+            int temp = stack1.pop();
+            if(temp == stack2.peek())
                 stack2.pop();
         }
     }

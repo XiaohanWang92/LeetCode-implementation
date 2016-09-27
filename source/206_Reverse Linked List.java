@@ -8,18 +8,19 @@
  */
 public class Solution {
     public ListNode reverseList(ListNode head) {
-        if(head==null||head.next==null) return head;
-        ListNode curr=head;
-        ListNode pre=null;
-        while(curr!=null){
-            ListNode next=curr.next;
-            curr.next=pre;
-            pre=curr;
-            curr=next;
+        if(head == null || head.next == null) return head;
+        ListNode current = head;
+        ListNode previous = null;
+        while(current != null) {
+            ListNode next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
         }
-        return pre;
+        return previous;
     }
 }
+
 //recursive method
 public class Solution {
     public ListNode reverseList(ListNode head) {
@@ -31,7 +32,8 @@ public class Solution {
         head.next = null;
         return newHead;
     }
-    private ListNode reverse(ListNode head){
+
+    private ListNode reverse(ListNode head) {
         if(head.next == null)
             return head;
         ListNode rest = head.next;

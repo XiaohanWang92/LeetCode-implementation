@@ -10,18 +10,17 @@ public class Solution {
     public RandomListNode copyRandomList(RandomListNode head) {
         if(head == null)    return null;
         Map<RandomListNode, RandomListNode> map = new HashMap<>();
-        RandomListNode curr = head;
-        while(curr != null){
-            map.put(curr, new RandomListNode(curr.label));
-            curr = curr.next;
+        RandomListNode current = head;
+        while(current != null) {
+            map.put(current, new RandomListNode(current.label));
+            current = current.next;
         }
-        curr = head;
-        while(curr != null){
-            map.get(curr).next = map.get(curr.next);
-            map.get(curr).random = map.get(curr.random);
-            curr = curr.next;
+        current = head;
+        while(current != null) {
+            map.get(current).next = map.get(current.next);
+            map.get(current).random = map.get(current.random);
+            current = current.next;
         }
-        
         return map.get(head);
     }
 }
