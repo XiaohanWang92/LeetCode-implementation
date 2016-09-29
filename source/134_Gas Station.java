@@ -4,14 +4,15 @@ public class Solution {
         int tank = 0;
         int gasSum = 0;
         int costSum = 0;
-        for(int i=0; i<gas.length; i++){
+        for(int i = 0; i < gas.length; i++) {
             gasSum += gas[i];
             costSum += cost[i];
             tank += gas[i] - cost[i];
-        //first one cannot reach
-            if(tank<0){
+
+            // First one cannot reach
+            if(tank < 0) {
                 tank = 0;
-                start = i+1;
+                start = i + 1;
             }
         }
         if(gasSum >= costSum)

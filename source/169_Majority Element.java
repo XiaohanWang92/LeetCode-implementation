@@ -3,17 +3,15 @@
 /*space O(1) time O(n)*/
 public class Solution {
     public int majorityElement(int[] nums) {
-        int candidate=nums[0];
-        int vote=1;
-        for(int i=1;i<nums.length;i++){
-            if(vote==0){
-                vote=1;
-                candidate=nums[i];
-            }
-            else if(candidate!=nums[i]){
+        int candidate = nums[0];
+        int vote = 1;
+        for(int i = 1; i < nums.length; i++) {
+            if(vote == 0) {
+                vote = 1;
+                candidate = nums[i];
+            } else if (candidate != nums[i]) {
                 vote--;
-            }
-            else{
+            } else {
                 vote++;
             }
         }
