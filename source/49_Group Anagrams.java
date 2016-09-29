@@ -8,9 +8,9 @@ public class Solution {
         for(String s : strs){
             char[] sc = s.toCharArray();
             Arrays.sort(sc);
-            if(map.containsKey(String.valueOf(sc))){
+            if(map.containsKey(String.valueOf(sc))) {
                 map.get(String.valueOf(sc)).add(s);
-            }else{
+            } else {
                 List<String> l = new ArrayList<String>();
                 l.add(s);
                 map.put(String.valueOf(sc), l);
