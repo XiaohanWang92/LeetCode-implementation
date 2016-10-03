@@ -11,7 +11,7 @@ public class Solution {
     ListNode start = new ListNode(0);
     start.next = head;
     ListNode slow = start, fast = start;
-    for(int i=1; i<=n+1; i++)   {
+    for(int i = 1; i <= n + 1; i++) {
         fast = fast.next;
     }
     while(fast != null) {
