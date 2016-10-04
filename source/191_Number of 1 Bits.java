@@ -1,12 +1,12 @@
 public class Solution {
-    // you need to treat n as an unsigned value
+
+    // You need to treat n as an unsigned value
     public int hammingWeight(int n) {
-        int counter=0;
-        for(int i=0;i<32;i++){
-            if(1==(n&1))
+        int counter = 0;
+        for(int i = 0; i < 32; i++) {
+            if(1 == (n & 1))
                 counter++;
-            n=n>>>1;
-/*unsigned value, don't use >>, it will keep the signed highest bit so it will not be counted*/
+            n = n >>> 1;
         }
         return counter;
     }
