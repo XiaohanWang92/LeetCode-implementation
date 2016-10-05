@@ -10,45 +10,46 @@
 public class Solution {
     public List<Integer> rightSideView(TreeNode root) {
         if(root == null)    return new LinkedList<Integer>();
-        LinkedList<Integer> res = new LinkedList<>();
+        LinkedList<Integer> result = new LinkedList<>();
         LinkedList<TreeNode> layer = new LinkedList<>();
         layer.add(root);
-        while(!layer.isEmpty()){
+        while(!layer.isEmpty()) {
             LinkedList<TreeNode> thisLayer = new LinkedList<>();
             int j = layer.size();
-            for(int i=0; i<j-1; i++){
+            for(int i = 0; i < j - 1; i++) {
                 TreeNode t = layer.remove();
-                if(t.left!=null)    thisLayer.add(t.left);
-                if(t.right!=null)   thisLayer.add(t.right);
+                if(t.left != null)    thisLayer.add(t.left);
+                if(t.right != null)   thisLayer.add(t.right);
             }
             TreeNode last = layer.remove();
-            res.add(last.val);
-            if(last.left!=null)    thisLayer.add(last.left);
-            if(last.right!=null)   thisLayer.add(last.right);
+            result.add(last.val);
+            if(last.left != null)    thisLayer.add(last.left);
+            if(last.right != null)   thisLayer.add(last.right);
             layer.addAll(thisLayer);
         }
-        return res;
+        return result;
     }
 }
-/use ArrayList, even doesn't speed up/
+
+//use ArrayList, even doesn't speed up
 public class Solution {
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        if(root == null)    return res;
+        List<Integer> result = new ArrayList<>();
+        if(root == null)    return result;
         List<TreeNode> layer = new ArrayList<>();
         layer.add(root);
-        while(!layer.isEmpty()){
+        while(!layer.isEmpty()) {
             List<TreeNode> nextLayer = new ArrayList<>();
             int size = layer.size();
-            for(int i = 0; i <= size-2; i++){
+            for(int i = 0; i <= size - 2; i++) {
                 TreeNode node = layer.get(i);
                 if(node.left != null)
                     nextLayer.add(node.left);
                 if(node.right != null)
                     nextLayer.add(node.right);
             }
-            TreeNode lastOne = layer.get(size-1);
-            res.add(lastOne.val);
+            TreeNode lastOne = layer.get(size - 1);
+            result.add(lastOne.val);
             if(lastOne.left != null)
                 nextLayer.add(lastOne.left);
             if(lastOne.right != null)
@@ -56,6 +57,6 @@ public class Solution {
             layer.clear();
             layer.addAll(nextLayer);
         }
-        return res;
+        return result;
     }
 }

@@ -1,6 +1,8 @@
 public class Solution {
+
     private int startPos;
-    private int maxLen;
+    private int maxLength;
+
     public String longestPalindrome(String s) {
         if(s == null || s.length() == 0)   return "";
         if(s.length() < 2)    return s;
@@ -8,16 +10,17 @@ public class Solution {
             findMaxPalin(i, i, s);//find odd
             findMaxPalin(i, i + 1, s);//find even
         }
-        return s.substring(startPos, startPos + maxLen);
+        return s.substring(startPos, startPos + maxLength);
     }
+
     private void findMaxPalin(int left, int right, String s) {
         while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
             left--;
             right++;
         }
         int currLen = right - left - 1;
-        if(currLen > maxLen) {
-            maxLen = currLen;
+        if(currLen > maxLength) {
+            maxLength = currLen;
             startPos = left + 1;
         }
     }

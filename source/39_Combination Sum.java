@@ -1,4 +1,5 @@
 public class Solution {
+
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> results = new ArrayList<>();
         List<Integer> track = new ArrayList<>();
@@ -7,6 +8,7 @@ public class Solution {
         backtrack(results, track, candidates, target, 0);
         return results;
     }
+
     private void backtrack(List<List<Integer>> results, List<Integer> track, int[] candidate, int target, int pos) {
         if(target < 0)   return;
         else if(target == 0) {
