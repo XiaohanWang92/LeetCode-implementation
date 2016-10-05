@@ -60,3 +60,28 @@ public class Solution {
         return result;
     }
 }
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        if(root == null)    return new ArrayList<Integer>();
+        List<Integer> results = new ArrayList<>();
+        findAndAddRightmostNode(root, results, 0);
+        return results;
+    }
+    private void findAndAddRightmostNode(TreeNode root, List<Integer> results, int level) {
+        if(root == null)    return;
+        if(results.size() == level)   results.add(root.val);
+        findAndAddRightmostNode(root.right, results, level + 1);
+        findAndAddRightmostNode(root.left, results, level + 1);
+    }
+}
+
