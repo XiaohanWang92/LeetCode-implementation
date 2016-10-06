@@ -52,3 +52,36 @@ public class NestedIterator implements Iterator<Integer> {
  * while (i.hasNext()) v[f()] = i.next();
  */
  
+
+// queue approach
+public class NestedIterator implements Iterator<Integer> {
+    
+    private Deque<NestedInteger> iteratorQueue;
+    public NestedIterator(List<NestedInteger> nestedList) {
+        iteratorQueue = new LinkedList<>();
+        for(NestedInteger ni : nestedList) {
+            iteratorQueue.offer(ni);
+        }
+    }
+
+    @Override
+    public Integer next() {
+        return iteratorQueue.poll().getInteger();
+    }
+
+    @Override
+    public boolean hasNext() {
+        if(iteratorQueue.size() == 0)   return false;
+        NestedInteger ni = iteratorQueue.peek();
+        if(ni == null)  return false;
+        while(!ni.isInteger()) {
+            List<NestedInteger> l = iteratorQueue.poll().getList();
+            for(int i = l.size() - 1; i >= 0; i--) {
+                iteratorQueue.addFirst(l.get(i));
+            }
+            ni = iteratorQueue.peek();
+            if(ni == null)  return false;
+        }
+        return true;
+    }
+}
