@@ -6,14 +6,14 @@ public class LRUCache {
         DoubleLinkedListNode previous;
         DoubleLinkedListNode next;
 
-        public DoubleLinkedListNode(int v, int k){
+        public DoubleLinkedListNode(int v, int k) {
             value = v;
 
-            //  key is to find element in HashMap with evicting
+            //  key is to find element in HashMap for evicting
             key = k;
         }
 
-        public DoubleLinkedListNode(){
+        public DoubleLinkedListNode() {
 
             // Empty method
             // Do nothing, for dummy head and end
