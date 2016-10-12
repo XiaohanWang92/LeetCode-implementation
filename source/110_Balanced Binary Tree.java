@@ -12,14 +12,15 @@ public class Solution {
         if(root == null)    return true;
         return heightCheck(root) != -1;
     }
-    private int heightCheck(TreeNode root){
+
+    private int heightCheck(TreeNode root) {
         if(root == null)    return 0;
         int l = heightCheck(root.left);
         if(l == -1) return -1;
         int r = heightCheck(root.right);
         if(r == -1) return -1;
-        if(Math.abs(l-r)>1) return -1;
-        return 1+Math.max(l,r);
+        if(Math.abs(l - r) > 1) return -1;
+        return 1 + Math.max(l, r);
     }
 }
 

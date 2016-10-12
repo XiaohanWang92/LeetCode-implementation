@@ -13,7 +13,7 @@ public class Solution {
         if (k < count) {
             return kthSmallest(root.left, k);
         } else if (k > count) {
-            return kthSmallest(root.right, k-count); // 1 is counted as current node
+            return kthSmallest(root.right, k - count); // 1 is counted as current node
         } else{
             return root.val;
         }

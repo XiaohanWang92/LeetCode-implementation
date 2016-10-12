@@ -10,7 +10,6 @@ public class Solution {
             index++;
         }
         int result = 0;
-
         while(index != s.length()) {
 
             // Character.getNumericValue(char ch) can also work
