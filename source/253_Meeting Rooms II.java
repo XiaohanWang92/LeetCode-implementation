@@ -8,13 +8,15 @@
  * }
  */
 public class Solution {
+
     class myCom implements Comparator<Interval>{
         public int compare(Interval i1, Interval i2){
             return i1.end - i2.end;
         }
     }
+
     public int minMeetingRooms(Interval[] intervals) {
-        if(intervals==null || intervals.length==0)
+        if(intervals == null || intervals.length == 0)
             return 0;
         Arrays.sort(intervals, new Comparator<Interval>() {
             public int compare(Interval i1, Interval i2){
@@ -26,12 +28,12 @@ public class Solution {
         
         rooms.add(intervals[0]);
         
-        for(int i=1; i<intervals.length; i++){
+        for(int i = 1; i < intervals.length; i++) {
             Interval fitRoom = rooms.poll();
-            if(intervals[i].start >= fitRoom.end){
+            if(intervals[i].start >= fitRoom.end) {
                 fitRoom.end = intervals[i].end;
                 rooms.offer(fitRoom);
-            }else{
+            } else {
                 rooms.offer(intervals[i]);
                 rooms.offer(fitRoom);
             }
