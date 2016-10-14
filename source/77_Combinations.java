@@ -1,19 +1,20 @@
 public class Solution {
     public List<List<Integer>> combine(int n, int k) {
-        if(n == 0 || k > n || k == 0) return new ArrayList<List<Integer>>();
-        List<List<Integer>> result = new ArrayList<>();
+        if(n <= 0 || k <= 0)    return new ArrayList<List<Integer>>();
+        List<List<Integer>> results = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
-        combine(0, k, 1, n, result, path);
-        return result;
+        findCombine(1, n, k, results, path);
+        return results;
     }
-    private void combine(int round, int k, int pos, int n, List<List<Integer>> result, List<Integer> path){
-        if(round == k) {
-            result.add(new ArrayList(path));
+    
+    private void findCombine(int start, int n, int k, List<List<Integer>> results, List<Integer> path) {
+        if(k == 0) {
+            results.add(new ArrayList<Integer>(path));
             return;
         }
-        for(int i = pos; i <= n; i++) {
+        for(int i = start; i <= n; i++) {
             path.add(i);
-            combine(round + 1, k, i + 1, n, result, path);
+            findCombine(i + 1, n, k - 1, results, path);
             path.remove(path.size() - 1);
         }
     }
