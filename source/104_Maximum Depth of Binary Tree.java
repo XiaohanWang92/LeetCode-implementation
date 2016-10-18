@@ -19,8 +19,8 @@ public class Solution {
         return currentMax;
     }
 
-    private void findDepthDFS(TreeNode subRoot, int depth){
-        if(subRoot.left == null && subRoot.right == null){
+    private void findDepthDFS(TreeNode subRoot, int depth) {
+        if(subRoot.left == null && subRoot.right == null) {
             currentMax = currentMax > depth ? currentMax : depth;
         }
         if(subRoot.left != null)

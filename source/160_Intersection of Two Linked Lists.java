@@ -17,29 +17,29 @@ public class Solution {
         if(headA == null || headB == null)  return null;
         int lenA = 0, lenB = 0;
         ListNode tmpA = headA, tmpB = headB;
-        while(tmpA != null){
+        while(tmpA != null) {
             tmpA = tmpA.next;
             lenA++;
         }
-        while(tmpB != null){
+        while(tmpB != null) {
             tmpB = tmpB.next;
             lenB++;
         }
         tmpA = headA;
         tmpB = headB;
         int pass = Math.abs(lenA - lenB);
-        if(lenA > lenB){
-            while(pass != 0){
+        if(lenA > lenB) {
+            while(pass != 0) {
                 tmpA = tmpA.next;
                 pass--;
             }
         }else{
-            while(pass != 0){
+            while(pass != 0) {
                 tmpB = tmpB.next;
                 pass--;
             }
         }
-        while(tmpB != null){
+        while(tmpB != null) {
             if(tmpB == tmpA)
                 return tmpB;
             tmpB = tmpB.next;
