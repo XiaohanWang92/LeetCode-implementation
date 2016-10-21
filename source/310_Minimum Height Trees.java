@@ -21,6 +21,8 @@ public class Solution {
             n -= leaf.size();
             List<Integer> nextLeaf = new ArrayList<>();
             for(int label : leaf) {
+
+                // Only get single one
                 int next = vertex.get(label).iterator().next();
                 HashSet s = vertex.get(next);
                 s.remove(label);
