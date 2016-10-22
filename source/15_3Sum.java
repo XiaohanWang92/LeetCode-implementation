@@ -14,7 +14,7 @@ public class Solution {
                     while(low < high && nums[high] == nums[high - 1]) high--;//skip
                     low++;//skip last same one {-9,-9,2,2,7,7}
                     high--;//low=2, nums[2]==nums[3], so low->3, and line 15 makes low->4
-                } else if (target<nums[low]+nums[high]) {
+                } else if (target < nums[low] + nums[high]) {
                     high--;
                 } else {
                     low++;
