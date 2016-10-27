@@ -20,7 +20,7 @@ public class Solution {
                 if(tTable[s.charAt(right)] > 0) {
                     sTable[s.charAt(right)]++;
                     
-                    // notice <=, which means s and t can have duplicate chars
+                    // notice <=, which means s and t may have duplicate chars
                     // when tTable corresponding char's num > sTable, it is not a valid find++
                     // for example, "aabbcc" and "abc", the 2nd a in "aabbcc" should not trigger a find++
                     if(sTable[s.charAt(right)] <= tTable[s.charAt(right)]) {
