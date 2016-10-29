@@ -6,7 +6,7 @@ public class Solution {
     }
     
     // 23^1335 % base
-    // = ((23 ^ 133 % base) ^ 10) % base(23 ^ 5 % base) % base
+    // = ((23 ^ 133 % base) ^ 10) % base * (23 ^ 5 % base) % base
     // = function(function(23, 133), 10) * function(23, 5) % base
     private int superPow(int a, int[] b, int lastDigitIndex) {
         if(lastDigitIndex == -1)    return 1;
@@ -21,6 +21,8 @@ public class Solution {
         for(int i = 1; i <= exponent; i++) {
             
             // (aaa)%k=(a%k)(a%k)(a%k)%k
+            // mod every time for avoiding overflow
+            // (a % k) % k = a % k
             result = (result * base) % MOD;
         }
         return result;

@@ -1,9 +1,12 @@
 public class ValidWordAbbr {
-    HashMap<String, HashSet<String>> abbrMap = new HashMap<>();
-    public String getAbbrStr(String s){
-        if(s.length()<=2)   return s;
-        return s.substring(0,1)+(s.length()-2)+s.substring(s.length()-1);
+
+    HashMap<String, Set<String>> abbrMap = new HashMap<>();
+
+    public String getAbbrStr(String s) {
+        if(s.length() <= 2)   return s;
+        return s.substring(0, 1) + (s.length() - 2) + s.substring(s.length() - 1);
     }
+
     public ValidWordAbbr(String[] dictionary) {
         for (String word : dictionary) {
             if (word == null)
@@ -11,14 +14,13 @@ public class ValidWordAbbr {
             String abbrWord = getAbbrStr(word);
             if (abbrMap.containsKey(abbrWord)) {
                 abbrMap.get(abbrWord).add(word);
-            }
-            else{
-                HashSet<String> hs = new HashSet<String> ();
+            } else {
+                Set<String> hs = new HashSet<String> ();
                 hs.add(word);
                 abbrMap.put(abbrWord, hs);
+            }
         }
     }
-}
 
     public boolean isUnique(String word) {
         if (word == null)
