@@ -6,25 +6,25 @@ public class Solution {
             return false;
         int m = board.length, n = board[0].length;
         boolean[][] used = new boolean[m][n];
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
                 if(find(board, used, i, j, 0, word, m, n))
                     return true;
             }
         }
         return false;
     }
-    private boolean find(char[][] board, boolean[][] used, int i, int j, int pos, String word, int m, int n){
+    private boolean find(char[][] board, boolean[][] used, int i, int j, int pos, String word, int m, int n) {
         if(pos == word.length())
             return true;
         if(i < 0 || i >= m || j < 0 || j >= n)
             return false;
         if(word.charAt(pos) != board[i][j] || used[i][j])
             return false;
-        else{
+        else {
             used[i][j] = true;
-            if(find(board, used, i+1, j, pos+1, word, m, n) || find(board, used, i-1, j, pos+1, word, m, n) ||
-               find(board, used, i, j+1, pos+1, word, m, n) || find(board, used, i, j-1, pos+1, word, m, n))
+            if(find(board, used, i + 1, j, pos + 1, word, m, n) || find(board, used, i - 1, j, pos + 1, word, m, n) ||
+               find(board, used, i, j + 1, pos + 1, word, m, n) || find(board, used, i, j - 1, pos + 1, word, m, n))
                 return true;
             used[i][j] = false;
             return false;
