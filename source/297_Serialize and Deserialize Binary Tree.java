@@ -22,8 +22,9 @@ public class Codec {
         serialize(root, sb);
         return sb.toString();
     }
-    private void serialize(TreeNode root, StringBuilder sb){
-        if(root==null) {
+
+    private void serialize(TreeNode root, StringBuilder sb) {
+        if(root == null) {
             sb.append(NULL).append(COMMA);
         } else {
             sb.append(root.val).append(COMMA);

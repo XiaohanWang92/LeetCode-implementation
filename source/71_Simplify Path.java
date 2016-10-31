@@ -1,16 +1,16 @@
 public class Solution {
     public String simplifyPath(String path) {
         if(path == null || path.length() == 0)    return "/";
-        Deque<String> stack = new LinkedList<String>();
+        Deque<String> stack = new LinkedList<>();
         String[] dir = path.split("/");
-        Set<String> hs = new HashSet<String>(Arrays.asList(".", "..", ""));
-        for(String s : dir){
+        Set<String> hs = new HashSet<>(Arrays.asList(".", "..", ""));
+        for(String s : dir) {
             if(!hs.contains(s)) stack.push(s);
             else if(s.equals("..") && !stack.isEmpty()) stack.pop();
         }
         if(stack.isEmpty())   return "/";
         StringBuilder sb = new StringBuilder();
-        while(!stack.isEmpty()){
+        while(!stack.isEmpty()) {
             sb.append("/" + stack.removeLast());
         }
         return sb.toString();
