@@ -1,6 +1,6 @@
 public class Solution {
     public List<String> restoreIpAddresses(String s) {
-        List<String> result = new ArrayList();
+        List<String> result = new ArrayList<>();
         int len = s.length();
         if(len < 4)   return result;
         for(int i = 0; i < 4 && i < len - 2; i++) {
