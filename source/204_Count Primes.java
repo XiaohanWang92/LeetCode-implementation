@@ -12,7 +12,7 @@ public class Solution {
             if(!isP[i]) {
                 continue;
             }
-            // Start mark off from i^2, i^2 + i, i^2 + 2i
+            // Start mark off from i^2, i^2 + i, i^2 + 2i......
             for(int j = i * i; j < n; j = j + i) {
                 isP[j] = false;
             }

@@ -3,8 +3,8 @@ public class Solution {
         List<String> result = new ArrayList<>();
         int len = s.length();
         if(len < 4)   return result;
-        for(int i = 0; i < 4 && i < len - 2; i++) {
-            for(int j = i; j < i + 4 && j < len - 1; j++) {
+        for(int i = 0; i < 4 && i < len; i++) {
+            for(int j = i; j < i + 4 && j < len; j++) {
                 for(int k = j; k < j + 4 && k < len; k++) {
                     String s1 = s.substring(0, i);
                     String s2 = s.substring(i, j);
