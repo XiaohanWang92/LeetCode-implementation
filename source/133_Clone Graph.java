@@ -11,16 +11,16 @@ public class Solution {
         if(node == null)  return null;
         UndirectedGraphNode clone = new UndirectedGraphNode(node.label);
         Map<Integer, UndirectedGraphNode> map = new HashMap<>();
-        Deque<UndirectedGraphNode> list = new LinkedList<>();
+        Deque<UndirectedGraphNode> queue = new LinkedList<>();
         map.put(clone.label, clone);
-        list.add(node);
-        while(list.size() != 0) {
-            UndirectedGraphNode curr = list.poll();
+        queue.add(node);
+        while(queue.size() != 0) {
+            UndirectedGraphNode curr = queue.poll();
             for(UndirectedGraphNode n : curr.neighbors) {
                 if(!map.containsKey(n.label)) {
                     UndirectedGraphNode cloneN = new UndirectedGraphNode(n.label);
                     map.put(cloneN.label, cloneN);
-                    list.add(n);
+                    queue.add(n);
                 }
                 map.get(curr.label).neighbors.add(map.get(n.label));
             }

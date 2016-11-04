@@ -39,6 +39,7 @@ public class Solution {
         for(int col = 0; col < 9; col++)
             if(board[i][col] == c)
                 return false;
+
         // Check 3 x 3 block
         for(int row = (i / 3) * 3; row < (i / 3) * 3 + 3; row++)
             for(int col = (j / 3) * 3; col < (j / 3) * 3 + 3; col++)

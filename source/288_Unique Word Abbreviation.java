@@ -8,14 +8,14 @@ public class ValidWordAbbr {
     }
 
     public ValidWordAbbr(String[] dictionary) {
-        for (String word : dictionary) {
-            if (word == null)
+        for(String word : dictionary) {
+            if(word == null)
                 continue;
             String abbrWord = getAbbrStr(word);
-            if (abbrMap.containsKey(abbrWord)) {
+            if(abbrMap.containsKey(abbrWord)) {
                 abbrMap.get(abbrWord).add(word);
             } else {
-                Set<String> hs = new HashSet<String> ();
+                Set<String> hs = new HashSet<> ();
                 hs.add(word);
                 abbrMap.put(abbrWord, hs);
             }
@@ -23,13 +23,13 @@ public class ValidWordAbbr {
     }
 
     public boolean isUnique(String word) {
-        if (word == null)
+        if(word == null)
                 return true;
         String abbrWord = getAbbrStr(word);
-        if (abbrMap.containsKey(abbrWord)) {
-            if (abbrMap.get(abbrWord).size() > 1)
+        if(abbrMap.containsKey(abbrWord)) {
+            if(abbrMap.get(abbrWord).size() > 1)
                 return false;
-            if (!abbrMap.get(abbrWord).contains(word))
+            if(!abbrMap.get(abbrWord).contains(word))
                 return false;
         }
         return true;
