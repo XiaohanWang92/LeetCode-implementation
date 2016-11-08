@@ -31,7 +31,7 @@ public class TicTacToe {
         if(Math.abs(diagonal) == n || Math.abs(antiDiagonal) == n ||
            Math.abs(rows[row]) == n || Math.abs(cols[col]) == n) {
             return player;
-           }
+        }
         return 0;
     }
 }

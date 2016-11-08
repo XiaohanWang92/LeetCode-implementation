@@ -4,7 +4,7 @@ class MyQueue {
     private Deque<Integer> s1;
     private Deque<Integer> s2;
 
-    public MyQueue(){
+    public MyQueue() {
         s1 = new LinkedList<>();
         s2 = new LinkedList<>();
     }
@@ -13,7 +13,7 @@ class MyQueue {
         s1.push(x);
     }
 
-    // Removes the element from in front of queue.
+    // Removes the element from queue.
     public void pop() {
         if(s1.isEmpty() && s2.isEmpty())    return;
         if(s2.size() == 0) {
@@ -27,7 +27,7 @@ class MyQueue {
         }
     }
 
-    // Get the front element.
+    // Get the first element.
     public int peek() {
         if(s2.size() == 0) {
             int num = s1.size();
@@ -38,7 +38,7 @@ class MyQueue {
         return s2.peek();
     }
 
-    // Return whether the queue is empty.
+    // Return whether queues are empty.
     public boolean empty() {
         return s1.isEmpty() && s2.isEmpty();
     }
