@@ -1,9 +1,10 @@
+// 泽哥简单通俗易懂版
 public class Solution {
-    class Itinerary {
+    class Ticket {
         String fromCity;
         String toCity;
         boolean isVisited = false;
-        Itinerary(String from, String to) {
+        Ticket(String from, String to) {
             fromCity = from;
             toCity = to;
         }
@@ -11,23 +12,23 @@ public class Solution {
     
     public List<String> findItinerary(String[][] tickets) {
         if(tickets == null || tickets.length == 0)  return new ArrayList<String>();
-        Itinerary[] itineraries = new Itinerary[tickets.length];
-        Map<String, List<Itinerary>> destinationMap = new HashMap<>();
+        Ticket[] ticketsArray = new Ticket[tickets.length];
+        Map<String, List<Ticket>> destinationMap = new HashMap<>();
         for(int i = 0; i < tickets.length; i++) {
             String from = tickets[i][0];
             String to = tickets[i][1];
-            itineraries[i] = new Itinerary(from, to);
+            ticketsArray[i] = new Ticket(from, to);
             if(destinationMap.containsKey(from)) {
-                destinationMap.get(from).add(itineraries[i]);
+                destinationMap.get(from).add(ticketsArray[i]);
             } else {
-                destinationMap.put(from, new ArrayList(Arrays.asList(itineraries[i])));
+                destinationMap.put(from, new ArrayList(Arrays.asList(ticketsArray[i])));
             }
         }
         for(String k : destinationMap.keySet()) {
-            Collections.sort(destinationMap.get(k), new Comparator<Itinerary>() {
+            Collections.sort(destinationMap.get(k), new Comparator<Ticket>() {
                 
                 @Override
-                public int compare(Itinerary i1, Itinerary i2) {
+                public int compare(Ticket i1, Ticket i2) {
                     return i1.toCity.compareTo(i2.toCity);
                 }
             });
@@ -35,7 +36,7 @@ public class Solution {
         return DFSConstruct("JFK", tickets.length, new ArrayList<String>(), destinationMap);
     }
     
-    private List<String> DFSConstruct(String currCity, int totalStops, List<String> path, Map<String, List<Itinerary>> destinationMap) {
+    private List<String> DFSConstruct(String currCity, int totalStops, List<String> path, Map<String, List<Ticket>> destinationMap) {
         if(path.size() == totalStops) {
             List<String> results = new ArrayList<>();
             results.add("JFK");
@@ -45,8 +46,8 @@ public class Solution {
         if(!destinationMap.containsKey(currCity)) {
             return null;
         }
-        List<Itinerary> nextTickets = destinationMap.get(currCity);
-        for(Itinerary nextTicket : nextTickets) {
+        List<Ticket> nextTickets = destinationMap.get(currCity);
+        for(Ticket nextTicket : nextTickets) {
             if(!nextTicket.isVisited) {
                 nextTicket.isVisited = true;
                 path.add(nextTicket.toCity);
@@ -62,6 +63,7 @@ public class Solution {
     }
 }
 
+// 不想让人看懂版
 public class Solution {
         public List<String> findItinerary(String[][] tickets) {
         List<String> results = new ArrayList<String>();
