@@ -23,7 +23,7 @@ public class Solution {
         List<int[]> results = new ArrayList<>();
 
         // loop from left to right over the building left and right contour points
-        for(Map.Entry<Integer, int[]> entry : buildingTwoPoints.entrySet()) {
+        for(Map.Entry<Integer, List<int[]>> entry : buildingTwoPoints.entrySet()) {
             int xCoor = entry.getKey();
             List<int[]> buildingsOnCurrentXCoor = entry.getValue();
             
