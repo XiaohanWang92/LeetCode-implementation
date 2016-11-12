@@ -8,7 +8,7 @@ public class Solution {
                 j = Math.max(j, map.get(s.charAt(i)) + 1);
             }
             map.put(s.charAt(i), i);
-            max = Math.max(max,i - j + 1);
+            max = Math.max(max, i - j + 1);
         }
         return max;
     }

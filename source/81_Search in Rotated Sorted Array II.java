@@ -2,7 +2,7 @@ public class Solution {
     public boolean search(int[] nums, int target) {
         if(nums == null || nums.length == 0)    return false;
         int lo = 0, hi = nums.length - 1;
-        while(lo <= hi){
+        while(lo <= hi) {
             int mid = lo + (hi - lo) / 2;
             if(nums[mid] == target)
                 return true;

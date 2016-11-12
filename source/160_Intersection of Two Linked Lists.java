@@ -9,8 +9,8 @@
  *     }
  * }
  */
- /*for two lists with length n and n+k, if they collide at mth node, (m<=n), then it is assertive that
- we can begin checking collision at (k+1)th node for list n+k, 1st node for list n, 
+ /*for two lists with length n and n + k, if they collide at mth node, (m <= n), then it is assertive that
+ we can begin checking collision at (k + 1)th node for list n + k, 1st node for list n, 
  align them to same length and forward and check them only by one together*/
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
@@ -33,7 +33,7 @@ public class Solution {
                 tmpA = tmpA.next;
                 pass--;
             }
-        }else{
+        } else {
             while(pass != 0) {
                 tmpB = tmpB.next;
                 pass--;

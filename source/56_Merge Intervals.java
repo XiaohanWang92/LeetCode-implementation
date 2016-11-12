@@ -12,6 +12,8 @@ public class Solution {
         List<Interval> results = new ArrayList<>();
         if(intervals == null || intervals.isEmpty())    return results;
         Collections.sort(intervals, new Comparator<Interval>() {
+
+            @Override
             public int compare(Interval l1, Interval l2){
 
                 // Since all start time (int) is positive number

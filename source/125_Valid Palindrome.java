@@ -17,7 +17,7 @@ public class Solution {
     }
 }
 
-/*other dude's method, doesn't use build-in String method and RegExp, running time is faster:
+// other dude's method, doesn't use build-in String method and RegExp, running time is faster:
 public class Solution {
     public boolean isPalindrome(String s) {
         if (s.isEmpty()) {
@@ -44,4 +44,3 @@ public class Solution {
         return true;
     }
 }
-*/

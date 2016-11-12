@@ -8,11 +8,13 @@
  */
 public class Solution {
     public ListNode swapPairs(ListNode head) {
-        if(head==null || head.next==null)   return head;
+        if(head == null || head.next == null)   return head;
         ListNode dummy = new ListNode(0);
-        dummy.next=head;//head will be swapped
+
+        // Head will be swapped
+        dummy.next = head;
         ListNode curr = dummy;
-        while(curr.next!=null && curr.next.next!=null){
+        while(curr.next != null && curr.next.next != null) {
             ListNode left = curr.next;
             ListNode right = curr.next.next;
             ListNode nextOne = right.next;

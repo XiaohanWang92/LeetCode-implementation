@@ -1,6 +1,7 @@
 public class Solution {
     public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
         int area = Math.abs(C - A) * Math.abs(D - B) + Math.abs(G - E) * Math.abs(H - F);
+
         // Improve:no need use absolution
         // Check overlap
         if(C <= E || G <= A)  return area;
