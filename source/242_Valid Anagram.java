@@ -25,8 +25,8 @@ public class Solution {
 /*above solution deals with Unicode, for 26 lowercase english alphabets, there is a quicker solution
 public class Solution {
     public boolean isAnagram(String s, String t) {
-        if(s==null||t==null)    return false;
-        if(s.length()!=t.length())  return false;
+        if(s == null || t == null)    return false;
+        if(s.length() != t.length())  return false;
         int[] alphabet = new int[26];//default zero
         for (int i = 0; i < s.length(); i++) alphabet[s.charAt(i) - 'a']++;
         for (int i = 0; i < t.length(); i++) alphabet[t.charAt(i) - 'a']--;

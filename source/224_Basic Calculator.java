@@ -7,12 +7,12 @@ public class Solution {
         int result = 0;
         for(int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if(Character.isDigit(c)){
+            if(Character.isDigit(c)) {
                 previousNumber = 10 * previousNumber + Integer.parseInt(Character.toString(c));
             } else if (c == '+') {
-                result = result + previousNumber * sign;//add last number to result
-                previousNumber = 0;//reset previousNumber for new previousNumber in next loop
-                sign = 1;//set current sign
+                result = result + previousNumber * sign; //add last number to result
+                previousNumber = 0; //reset previousNumber for new previousNumber in next loop
+                sign = 1; //set current sign
             } else if (c == '-') {
                 result = result + previousNumber * sign;
                 previousNumber = 0;
@@ -20,9 +20,9 @@ public class Solution {
             } else if(c == '(') {
                 stack.push(sign);
                 stack.push(result);
-                sign = 1;//need to remember to reset sign!
+                sign = 1; //need to remember to reset sign!
                 result = 0;
-                //no need to reset previousNumber because legal expression excludes 1+2(3-4), before left parentheses there must be a '-' or '+'
+                //no need to reset previousNumber because legal expression excludes 1 + 2 (3 - 4), before left parentheses there must be a '-' or '+'
             } else if(c==')') {
                 result = result + previousNumber * sign;
                 int prevousResult = stack.pop();
