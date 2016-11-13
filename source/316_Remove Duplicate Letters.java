@@ -10,7 +10,7 @@ public class Solution {
             count[c - 'a']++;
         }
         Deque<Character> stack = new LinkedList<>();
-        for(char c :s.toCharArray()) {
+        for(char c : s.toCharArray()) {
             count[c - 'a']--;
             if(isInStack[c - 'a'])   continue;
             while(!stack.isEmpty() && stack.peek() > c && count[stack.peek() - 'a'] != 0) {
@@ -21,8 +21,8 @@ public class Solution {
             isInStack[c - 'a'] = true;
         }
         StringBuilder sb = new StringBuilder();
-        for(char c : stack) {
-            sb.insert(0, c);
+        while(stack.size() != 0) {
+            sb.append(stack.removeLast());
         }
         return sb.toString();
     }

@@ -1,25 +1,28 @@
 public class Solution {
     public int countComponents(int n, int[][] edges) {
-        int[] node = new int[n];
-        for(int i=0;i<n;i++){
-            node[i]=i;
+        int[] root = new int[n];
+        for(int i = 0; i < n; i++) {
+            root[i] = i;
         }
-        for(int[] edge:edges){
-            int root1=find(edge[0], node);
-            int root2=find(edge[1], node);
-            if(root1!=root2){
-                node[root2]=root1;//union
+        for(int[] edge : edges) {
+            int root1 = find(edge[0], root);
+            int root2 = find(edge[1], root);
+            if(root1 != root2) {
+
+                // union
+                root[root2] = root1;
             }
         }
-        int count=0;
-        for(int i=0;i<n;i++){
-            if(node[i]==i)  count++;
+        int count = 0;
+        for(int i = 0; i < n; i++) {
+            if(root[i] == i)  count++;
         }
         return count;
     }
-    private int find(int vertex, int[] node){
-        if(node[vertex]==vertex)    return vertex;
-        node[vertex]=node[node[vertex]];//path compression
-        return find(node[vertex], node);
+
+    private int find(int vertex, int[] root) {
+        if(root[vertex] == vertex)    return vertex;
+        root[vertex] = root[root[vertex]];
+        return find(root[vertex], root);
     }
 }
