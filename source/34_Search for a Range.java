@@ -3,7 +3,7 @@ public class Solution {
         int[] result = new int[2];
         result[0] = -1;
         result[1] = -1;
-        if(nums == null || nums.length == 0 || target < nums[0] || target > nums[nums.length-1])
+        if(nums == null || nums.length == 0 || target < nums[0] || target > nums[nums.length - 1])
             return result;
         if(nums[0] == target && nums[nums.length - 1] == target) {
             result[0] = 0;
@@ -34,7 +34,7 @@ public class Solution {
 
                 // continue to search
                 lo = m + 1;
-            }else if(nums[m] < target)
+            } else if(nums[m] < target)
                 lo = m + 1;
             else
                 hi = m - 1;
