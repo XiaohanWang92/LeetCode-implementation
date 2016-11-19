@@ -12,7 +12,8 @@ public class Solution {
                     // add more candies to previous peak
                     // exp: [9, 7, 5, 4, 3, 4]
                     // first 9 is given 1 candy, there are 4 descending num following 9
-                    // they are given candies 1 + 2 + 3 + 4, and we amend 9 with extra candies: 4 - 1 + 1 = 4
+                    // they should be given candies 4 (for 7), 3 (for 5), 2 (for 4), 1 (for 3) (in line 10),
+                    // and we amend 9 with extra candies: 4 - 1 + 1 = 4
                     // so 9 has candies of 5, enough to provide sufficient yet minimum candies to its descending tails
                     if (numOfDescend >= prevCandy) total += numOfDescend - prevCandy + 1;
                     numOfDescend = 0;

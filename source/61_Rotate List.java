@@ -12,15 +12,16 @@ public class Solution {
             return head;
         int len = 1;
         ListNode tmp = head;
-        while(tmp.next != null){
+        while(tmp.next != null) {
             tmp = tmp.next;
             len++;
         }
-        //tmp now is the tail
+
+        // tmp now is the tail
         k = k % len;
         if(k == 0)  return head;
         int r = len - k;
-        while(r > 0){
+        while(r > 0) {
             ListNode nextOne = head.next;
             head.next = null;
             tmp.next = head;

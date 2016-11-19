@@ -22,13 +22,13 @@ public class Solution {
 }
 
 //or iterative way
-    public double myPow(double x, int n) {
-        long m = n < 0 ? (long)n * (-1) : n;
-        double res = 1.0;
-        while(m != 0) {
-            if(m % 2 == 1) res *= x;
-            x *= x;
-            m /= 2;
-        }
-        return n < 0 ? 1 / res : res;
+public double myPow(double x, int n) {
+    long m = n < 0 ? (long)n * (-1) : n;
+    double res = 1.0;
+    while(m != 0) {
+        if(m % 2 == 1) res *= x;
+        x *= x;
+        m /= 2;
     }
+    return n < 0 ? 1 / res : res;
+}
