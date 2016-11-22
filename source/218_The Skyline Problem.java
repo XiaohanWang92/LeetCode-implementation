@@ -1,3 +1,6 @@
+/**
+ * https://discuss.leetcode.com/topic/39416/guaranteed-really-detailed-and-good-perfect-explanation-of-the-skyline-problem/10
+ */
 public class Solution {
     
     public List<int[]> getSkyline(int[][] buildings) {
