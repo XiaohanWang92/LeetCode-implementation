@@ -30,3 +30,32 @@ public class Solution {
         return 0;
     }
 }
+
+public class Solution {
+    public int jump(int[] nums) {
+        
+        // border case
+        if(nums == null || nums.length < 2) return 0;
+        
+        // initialization
+        int currentIndex = 0;
+        int currentReachedRegion = nums[currentIndex];
+        int step = 1;
+        
+        // start jumping
+        while(currentReachedRegion < nums.length - 1) {
+            int nextIndex = currentIndex;
+            int nextReachedRegion = currentReachedRegion;
+            for(int i = currentIndex; i <= currentReachedRegion; i++) {
+                if(i + nums[i] > nextReachedRegion) {
+                    nextIndex = i;
+                    nextReachedRegion = i + nums[i];
+                }
+            }
+            currentIndex = nextIndex;
+            currentReachedRegion = nextReachedRegion;
+            step++;
+        }
+        return step;
+    }
+}
