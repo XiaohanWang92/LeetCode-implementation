@@ -9,8 +9,7 @@ public class ZigzagIterator {
 
     public int next() {
         Iterator itr = iter.remove();
-        int result = (Integer)itr.next();//what happen if not cast?
-	//Line 12: error: incompatible types: Object cannot be converted to int
+        int result = (Integer)itr.next();
         if(itr.hasNext()) {
             iter.add(itr);
         }

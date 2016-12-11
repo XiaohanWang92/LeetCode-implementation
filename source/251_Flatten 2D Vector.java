@@ -1,25 +1,27 @@
 public class Vector2D {
-    LinkedList<Iterator> iter2d;
+
+    LinkedList<Iterator> iterator2d;
+
     public Vector2D(List<List<Integer>> vec2d) {
-        iter2d = new LinkedList<Iterator>();
-        for(List l : vec2d){
-            if(l.size()!=0){
-                iter2d.add(l.iterator());
+        iterator2d = new LinkedList<Iterator>();
+        for(List l : vec2d) {
+            if(l.size() != 0) {
+                iterator2d.add(l.iterator());
             }
         }
     }
 
     public int next() {
-        Iterator iter = iter2d.remove();
-        int res = (Integer)iter.next();
-        if(iter.hasNext()){
-            iter2d.addFirst(iter);
+        Iterator iterator = iterator2d.remove();
+        int result = (Integer)iterator.next();
+        if(iterator.hasNext()) {
+            iterator2d.addFirst(iterator);
         }
-        return res;
+        return result;
     }
 
     public boolean hasNext() {
-        return iter2d.size()!=0;
+        return iterator2d.size() != 0;
     }
 }
 
