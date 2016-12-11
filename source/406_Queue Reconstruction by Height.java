@@ -2,9 +2,9 @@ public class Solution {
     public int[][] reconstructQueue(int[][] people) {
         if(people == null || people.length == 0)    return people;
 
-        // fact: given a ordered Queue and a person, if people in Queue are all taller or equal to this person
+        // fact: given an ordered Queue and a person, if people in Queue are all taller or equal to this person
         // then this person's position (index) in queue is the k value (number of taller or equal person before him / her)
-        // sort people in height descending order, if height is the same then people with smaller k value shoud stand before larger k value person
+        // sort people in height descending order, if height is the same then people with smaller k value should stand before larger k value person
         Arrays.sort(people, new Comparator<int[]>() {
             
             @Override
