@@ -6,6 +6,8 @@ public class Solution {
         match[0][0] = true;
         for (int j = 1; j < match[0].length; j++) {
             if (p.charAt(j - 1) == '*') {
+
+                // more or zero of the preceding element
                 if (match[0][j - 1] || (j > 1 && match[0][j - 2])) {
                     match[0][j] = true;
                 }
@@ -18,6 +20,8 @@ public class Solution {
                 }
                 if (p.charAt(j - 1) == '*') {
                     if (s.charAt(i - 1) != p.charAt(j - 2) && p.charAt(j - 2) != '.') {
+
+                        // match zero
                         match[i][j] = match[i][j - 2];
                     } else {
                         match[i][j] = match[i - 1][j] || match[i][j - 1] || match[i][j - 2];
