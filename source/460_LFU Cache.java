@@ -7,6 +7,8 @@ public class LFUCache {
     
     class FreqNode {
         int freq;
+
+        // maintain adding order so last recently key will be on head
         LinkedHashSet<Integer> keys;
         FreqNode prev;
         FreqNode next;
@@ -40,6 +42,8 @@ public class LFUCache {
             valueMap.put(key, value);
             updateFrequency(key);
         } else {
+
+            // remove last frequent first before adding new one
             if(valueMap.size() >= capacity) {
                 removeLastFrequent();
             }
@@ -69,6 +73,8 @@ public class LFUCache {
         FreqNode node = freqMap.get(key);
         node.keys.remove(key);
         int newFreq = node.freq + 1;
+
+        // key's frequent is the only one or only largest
         if(node.prev == head || node.prev.freq > newFreq) {
             FreqNode newNode = new FreqNode(newFreq);
             newNode.keys.add(key);
@@ -78,9 +84,14 @@ public class LFUCache {
             freqMap.put(key, newNode);
         } else {
             node.prev.keys.add(key);
+
+            // also need to update the node for the key
             freqMap.put(key, node.prev);
         }
         if(node.keys.size() == 0) {
+
+            // only need to update references within this node
+            // updating freqMap will make node de-referred automatically
             removeNode(node);
         }
     }
@@ -97,6 +108,8 @@ public class LFUCache {
         if(tail.prev == head)   return;
         FreqNode node = tail.prev;
         int key = 0;
+
+        // first is the last recent key
         for(int n : node.keys) {
             key = n;
             break;
@@ -116,4 +129,3 @@ public class LFUCache {
  * int param_1 = obj.get(key);
  * obj.set(key,value);
  */
- 
