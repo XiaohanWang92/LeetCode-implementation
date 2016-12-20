@@ -11,15 +11,18 @@ public class Solution {
         int addition = 0, bit = 0;
         while(ida >- 1 || idb >- 1 || addition == 1) {
             int bitA = (ida >- 1) ? Character.getNumericValue(charA[ida--]) : 0;
-            int bitB = (idb >- 1)? Character.getNumericValue(charB[idb--]) : 0;
+            int bitB = (idb >- 1) ? Character.getNumericValue(charB[idb--]) : 0;
             bit = (bitA + bitB + addition) % 2;
             addition = (bitA + bitB + addition) >= 2 ? 1 : 0;
+
+            // this operation makes it slower
             sbf.insert(0, bit);
         }
         return sbf.toString();
     }
 }
-//faster, almost same idea
+
+// faster, almost same idea
 public class Solution {
     public String addBinary(String a, String b) {
         if(a == null || a.length() == 0)
@@ -31,9 +34,9 @@ public class Solution {
         int idx = 0, aLen = a.length(), bLen = b.length();
         int len = Math.max(aLen, bLen) - 1;
         while(idx <= len) {
-            int res = carry + (idx < a.length() ? a.charAt(aLen - 1 - idx)-'0' : 0) 
-                            + (idx < b.length() ? b.charAt(bLen - 1 - idx)-'0' : 0);
-            carry = res/2;
+            int res = carry + (idx < a.length() ? a.charAt(aLen - 1 - idx) - '0' : 0) 
+                            + (idx < b.length() ? b.charAt(bLen - 1 - idx) - '0' : 0);
+            carry = res / 2;
             res %= 2;
             sb.append(res);
             idx++;
@@ -43,4 +46,3 @@ public class Solution {
         return sb.reverse().toString();
     }
 }
-
