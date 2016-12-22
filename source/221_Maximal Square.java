@@ -2,6 +2,8 @@ public class Solution {
     public int maximalSquare(char[][] matrix) {
         if(matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;
         int maxLen = 0;
+
+        // dpSize[i][j] maximal square side which can be obtained at current point
         int[][] dpSize = new int[matrix.length][matrix[0].length];
         for(int i = 0; i < matrix.length; i++) {
             dpSize[i][0] = matrix[i][0] - '0';
