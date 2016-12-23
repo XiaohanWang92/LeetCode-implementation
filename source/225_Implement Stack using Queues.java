@@ -1,15 +1,18 @@
 class MyStack {
+
     // Push element x onto stack.
     private Queue<Integer> q;
-    public MyStack(){
-        q=new LinkedList<Integer>();
+
+    public MyStack() {
+        q = new LinkedList<Integer>();
     }
+
     public void push(int x) {
         q.add(x);
-        int i=0;
-        int size=q.size();
-        while(i<size-1){
-            int t=q.remove();
+        int i = 0;
+        int size = q.size();
+        while(i < size - 1) {
+            int t = q.remove();
             q.add(t);
             i++;
         }
@@ -27,12 +30,10 @@ class MyStack {
 
     // Return whether the stack is empty.
     public boolean empty() {
-        if(q.size()==0){
+        if(q.size() == 0){
             return true;
-        }
-        else{
+        } else {
             return false;
         }
-        /*or use inherited method, return q.isEmpty()*/
     }
 }
