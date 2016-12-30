@@ -11,11 +11,12 @@
 // old solution
 public class Solution {
     public boolean isSymmetric(TreeNode root) {
-        if (root==null)
+        if (root == null)
             return true;
         boolean isSymmetric = checkSymmetric(root.left, root.right);
         return isSymmetric;
     }
+
     private boolean checkSymmetric(TreeNode left, TreeNode right) {
         if(left == null && right == null)
             return true;
@@ -23,7 +24,7 @@ public class Solution {
             return false;
         //now reaching leave test has been done
         if(left.val == right.val) {
-            boolean isTemp = checkSymmetric(left.left, right.right) && checkSymmetric(left.right,right.left);
+            boolean isTemp = checkSymmetric(left.left, right.right) && checkSymmetric(left.right, right.left);
             return isTemp;
         } else {
             return false;
