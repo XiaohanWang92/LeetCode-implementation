@@ -1,37 +1,37 @@
-/*
-use 3sum to help 4sum, a little bit slower (beat around 80% vs beat around 99%), but I am certain mine is more readable and implementable during interview
-*/
+// use 3sum to help 4sum, a little bit slower (beat around 80% vs beat around 99%), but I am certain mine is more readable and implementable during interview
 public class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> results = new ArrayList<>();
         if(nums == null || nums.length < 4)
-            return res;
+            return results;
         Arrays.sort(nums);
         int len = nums.length;
-        for(int i = 0; i < len-3; i++){
-            if(i > 0 && nums[i-1] == nums[i])//skip
+        for(int i = 0; i < len - 3; i++) {
+            if(i > 0 && nums[i - 1] == nums[i])
                 continue;
-            threeSum(nums, res, target - nums[i], i);
+            threeSum(nums, results, target - nums[i], i);
         }
-        return res;
+        return results;
     }
-    private void threeSum(int[] nums, List<List<Integer>> res, int target, int pos){
+
+    private void threeSum(int[] nums, List<List<Integer>> results, int target, int pos) {
         int len = nums.length;
-        for(int idx = pos+1; idx < len-2; idx++){
-            if(idx > pos+1 && nums[idx-1] == nums[idx])//skip
+        for(int idx = pos + 1; idx < len - 2; idx++) {
+            if(idx > pos + 1 && nums[idx - 1] == nums[idx])
                 continue;
             int lo = idx + 1, hi = len - 1;
-            while(lo < hi){
+            while(lo < hi) {
                 int sum = nums[idx] + nums[lo] + nums[hi];
-                if(sum == target){
+                if(sum == target) {
                     List<Integer> l = new ArrayList<Integer>(Arrays.asList(nums[pos], nums[idx], nums[lo], nums[hi]));
-                    // if(!res.contains(l)) no need
-                    res.add(l);
-                    while(lo < hi && nums[lo+1] == nums[lo])    lo++;//skip
-                    while(lo < hi && nums[hi-1] == nums[hi])    hi--;//skip
-                    lo++;//skip last one
-                    hi--;//skip last one
-                }else if(sum > target)
+
+                    // if(!results.contains(l)) no need
+                    results.add(l);
+                    while(lo < hi && nums[lo + 1] == nums[lo])    lo++;
+                    while(lo < hi && nums[hi - 1] == nums[hi])    hi--;
+                    lo++; //skip last one
+                    hi--; //skip last one
+                } else if(sum > target)
                     hi--;
                 else
                     lo++;
@@ -43,8 +43,6 @@ public class Solution {
 Below is a great solution from thread:
 https://leetcode.com/discuss/69517/7ms-java-code-win-over-100%25
 */
-
-
 public class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         ArrayList<List<Integer>> res = new ArrayList<List<Integer>>();

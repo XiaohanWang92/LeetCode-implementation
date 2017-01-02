@@ -15,7 +15,8 @@ public class Solution {
         }
         return pathList;
     }
-    private void DFS(TreeNode subRoot,String path, List<String> pathList) {
+
+    private void DFS(TreeNode subRoot, String path, List<String> pathList) {
         if(subRoot.left == null && subRoot.right == null) {
             pathList.add(path + subRoot.val);
         }

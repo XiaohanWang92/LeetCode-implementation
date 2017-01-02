@@ -8,19 +8,17 @@
  */
 public class Solution {
     public ListNode removeElements(ListNode head, int val) {
-        ListNode dummy=new ListNode(-1);
-        dummy.next=head;
-        
-        ListNode curr=head;
-        ListNode pre=dummy;
-        while(curr!=null){
-            if(curr.val==val){
-                pre.next=curr.next;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode curr = head;
+        ListNode pre = dummy;
+        while(curr != null) {
+            if(curr.val == val) {
+                pre.next = curr.next;
+            } else {
+                pre = pre.next;
             }
-            else{//only moves when next node value is not val
-                pre=pre.next;
-            }
-            curr=curr.next;
+            curr = curr.next;
         }
         return dummy.next;
     }
