@@ -9,28 +9,28 @@
  */
 public class Solution {
     public int countNodes(TreeNode root) {
-        if(root==null)  return 0;
-        
+        if(root == null)  return 0;
         int leftH = leftTreeHeight(root);
         int rightH = rightTreeHeight(root);
-        if(leftH == rightH){
-            return (1<<leftH)-1;
-        }
-        else{
+        if(leftH == rightH) {
+            return (1 << leftH) - 1;
+        } else {
             return 1 + countNodes(root.left) + countNodes(root.right);
         }
     }
-    private int leftTreeHeight(TreeNode root){
+
+    private int leftTreeHeight(TreeNode root) {
         int depth = 0;
-        while(root!=null){
+        while(root != null) {
             root = root.left;
             depth++;
         }
         return depth;
     }
-    private int rightTreeHeight(TreeNode root){
+
+    private int rightTreeHeight(TreeNode root) {
         int depth = 0;
-        while(root!=null){
+        while(root != null) {
             root = root.right;
             depth++;
         }
