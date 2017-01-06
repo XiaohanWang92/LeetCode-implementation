@@ -9,12 +9,14 @@
  */
 public class Solution {
     private int count;
+
     public int countUnivalSubtrees(TreeNode root) {
-        if(root==null)  return 0;
+        if(root == null)  return 0;
         findUnivalSubtrees(root);
         return count;
     }
-    private boolean findUnivalSubtrees(TreeNode root){
+
+    private boolean findUnivalSubtrees(TreeNode root) {
         if(root == null)    return true;
         
         boolean l = findUnivalSubtrees(root.left);
