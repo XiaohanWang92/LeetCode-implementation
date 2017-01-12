@@ -19,17 +19,17 @@ public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if(lists == null || lists.length == 0)    return null;
         PriorityQueue<ListNode> pq = new PriorityQueue<>(lists.length, new ListNodeComparator());
-        for(ListNode node : lists){
-            if(node!=null)
+        for(ListNode node : lists) {
+            if(node != null)
                 pq.offer(node);
         }
         ListNode head = new ListNode(0);
         ListNode curr = head;
-        while(!pq.isEmpty()){
+        while(!pq.isEmpty()) {
             ListNode currMinimum = pq.poll();
             curr.next = currMinimum;
             curr = curr.next;
-            if(currMinimum.next!=null)
+            if(currMinimum.next != null)
                 pq.offer(currMinimum.next);
         }
         return head.next;
