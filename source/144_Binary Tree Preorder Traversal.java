@@ -39,7 +39,7 @@ public class Solution {
         List<Integer> results = new ArrayList<>();
         if(root == null)  return results;
         stack.push(root);
-        while(stack.size()!=0){
+        while(stack.size() != 0) {
             TreeNode curr = stack.pop();
             if(curr != null) {
                 results.add(curr.val);

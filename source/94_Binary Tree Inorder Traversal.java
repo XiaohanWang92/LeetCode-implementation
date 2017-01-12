@@ -15,8 +15,8 @@ public class Solution {
         return results;
     }
 
-    private void inorderWalk(TreeNode root, List<Integer> results){
-        if(root==null)  return;
+    private void inorderWalk(TreeNode root, List<Integer> results) {
+        if(root == null)  return;
         inorderWalk(root.left, results);
         results.add(root.val);
         inorderWalk(root.right, results);
