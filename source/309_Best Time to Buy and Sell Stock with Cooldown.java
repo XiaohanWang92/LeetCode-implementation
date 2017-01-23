@@ -4,7 +4,7 @@ public class Solution {
         if(prices.length == 2)   return prices[1] > prices[0] ? prices[1] - prices[0] : 0;
         int len = prices.length;
         int[] buy = new int[len];
-        int[] hold = new int[len];
+        int[] cooldown = new int[len];
         int[] sell = new int[len];
 
         // three arrays represent profit in ith day with different 3 states
